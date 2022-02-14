@@ -14,9 +14,19 @@ import "./GameBrowser.css"
         <WatchWithHooks />
         <NPCFrom name = {name} faction = {faction} reputation = {reputation}/>
         <NameUI name = {name.value} faction = {faction.value}/>
+        <DisplayStats str = {StandardArray()} dex = {StandardArray()}  con = {StandardArray()}  wis = {StandardArray()}  int = {StandardArray()}  cha = {StandardArray()}/>
         </>
         )
     
+}
+
+function StandardArray()
+{
+    var stats = [15, 14, 13, 12, 10, 8];
+    var selected = Math.floor(Math.random()*stats.length);
+    var stat = stats[selected]
+    stats.splice(selected, 1);
+    return stat
 }
 
 function useFormInput(initialValue)
@@ -78,6 +88,20 @@ function NameUI(props){
             <h3>Ello</h3>
             <div>{props.name}</div>
             <div>{props.faction}</div>
+        </>
+    )
+}
+
+function DisplayStats(props){
+    return(
+        <>
+            <h3>Stats</h3>
+            <div>Strength: {props.str}</div>
+            <div>Dexterity: {props.dex}</div>
+            <div>Constitution: {props.con}</div>
+            <div>Intelligence: {props.int}</div>
+            <div>Wisdom: {props.wis}</div>
+            <div>Charisma: {props.cha}</div>
         </>
     )
 }
