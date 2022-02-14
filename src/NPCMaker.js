@@ -1,5 +1,5 @@
+import { getValue } from "@testing-library/user-event/dist/utils";
 import React, { useState, useEffect } from "react";
-import "./GameBrowser.css"
 
 class PlayerList extends React.Component {
     constructor() {
@@ -14,35 +14,82 @@ class PlayerList extends React.Component {
       };
     }
     
+    componentDidMount()
+    {
+
+    }
+    
     render()
     {
         var stats = [15, 14, 13, 12, 10, 8];
+    
+        
         return (
             <>
-                <Ui />
                 <WatchWithHooks />
-                <DisplayStats str = {StandardArray(stats)} dex = {StandardArray(stats)}  con = {StandardArray(stats)}  wis = {StandardArray(stats)}  int = {StandardArray(stats)}  cha = {StandardArray(stats)}/>
+                <DisplayStats 
+                str = {StandardArray(stats)} 
+                dex = {StandardArray(stats)}  
+                con = {StandardArray(stats)}  
+                wis = {StandardArray(stats)}  
+                int = {StandardArray(stats)}  
+                cha = {StandardArray(stats)}
+                />
            </>
         );
     }
   }
+
+  let characterContainerElement = document.getElementById("CharacterContainer");
+  let inputName = document.getElementById('inputname');
+  let inputRace = document.getElementById("inputRace");
+  let inputClas = document.getElementById("inputClass");
   
+  let charTemp = document.getElementById("CharacterTemplate");
+  let creatbtn = document.getElementById("btnCreate");
 
-function Ui()
+
+
+
+creatbtn.onclick = function()
 {
-    return(
-        <>
+    createCharector(inputName.value, inputRace.value, inputClas.value);
+    inputName.value = "";
+    inputRace.value = "";
+    inputClas.value = "";
 
-        <div>
-            <select> Race
-                <option>Elver</option>
-            </select>
-        </div>
+}
 
+function createCharector(Name,Race,Dndclass)
+{
+    if(Name === '')
+    Name = "Hoffe";
+    if(Race === '')
+    Race = "Human";
+    if(Dndclass === '')
+    Dndclass = "Programer";
+    
+    let clonedCharacter = charTemp.cloneNode(true);
+    clonedCharacter.removeAttribute("hidden");
+    clonedCharacter.removeAttribute("CharacterTemplate");
 
+    let clonedName = clonedCharacter.getElementsByClassName("CharacterName")[0];
+    clonedName.innerText = Name;
 
-        </>
-    )
+    let raceName = clonedCharacter.getElementsByClassName("RaceName")[0];
+    raceName.innerText = Race;
+
+    let dndclass = clonedCharacter.getElementsByClassName("dndclass")[0];
+    dndclass.innerText = Dndclass;
+
+    let clonedButton = clonedCharacter.getElementsByTagName("button")[0];
+
+    clonedButton.onclick = function()
+    {
+        this.parentNode.remove();
+    };
+    
+    characterContainerElement.appendChild(clonedCharacter);
 }
 
 function StandardArray(props)
@@ -52,9 +99,6 @@ function StandardArray(props)
     props.splice(selected, 1);
     return stat
 }
-
-
-
 
 function WatchWithHooks()
 {
@@ -72,13 +116,8 @@ function useDate()
         return () => clearInterval(id);
     })
 
-    function updateTime(){
-        setDate(new Date());
-    }
-
     return date;
 }
-
 
 function DisplayStats(props){
     return(
