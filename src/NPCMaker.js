@@ -1,45 +1,59 @@
 import React, { useState, useEffect } from "react";
 import "./GameBrowser.css"
 
-
-
- function NPCMaker ()
- {
-        let name = useFormInput("");
-        let faction = useFormInput("");
-        let reputation = useFormInput("Friendly");
-
-        return(
-        <>
-        <WatchWithHooks />
-        <NPCFrom name = {name} faction = {faction} reputation = {reputation}/>
-        <NameUI name = {name.value} faction = {faction.value}/>
-        <DisplayStats str = {StandardArray()} dex = {StandardArray()}  con = {StandardArray()}  wis = {StandardArray()}  int = {StandardArray()}  cha = {StandardArray()}/>
-        </>
-        )
+class PlayerList extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        Dex: 8,
+        Str: 8,
+        Wis: 8,
+        Con: 8,
+        Cha: 8,
+        Int: 8,
+      };
+    }
     
+    render()
+    {
+        var stats = [15, 14, 13, 12, 10, 8];
+        return (
+            <>
+                <Ui />
+                <WatchWithHooks />
+                <DisplayStats str = {StandardArray(stats)} dex = {StandardArray(stats)}  con = {StandardArray(stats)}  wis = {StandardArray(stats)}  int = {StandardArray(stats)}  cha = {StandardArray(stats)}/>
+           </>
+        );
+    }
+  }
+
+function Ui()
+{
+    return(
+        <>
+
+        <div>
+            <select> Race
+                <option>Elver</option>
+            </select>
+        </div>
+
+
+
+        </>
+    )
 }
 
-function StandardArray()
+function StandardArray(props)
 {
-    var stats = [15, 14, 13, 12, 10, 8];
-    var selected = Math.floor(Math.random()*stats.length);
-    var stat = stats[selected]
-    stats.splice(selected, 1);
+    var selected = Math.floor(Math.random()*props.length);
+    var stat = props[selected]
+    props.splice(selected, 1);
     return stat
 }
 
-function useFormInput(initialValue)
-{
-    const [Value , setValue] = useState(initialValue);
 
-    function handleChange(event)
-    {
-        return(setValue(event.target.value));
-    }
 
-    return({value : Value, onChange : handleChange});
-}
 
 function WatchWithHooks()
 {
@@ -65,33 +79,6 @@ function useDate()
 }
 
 
-
-
-function NPCFrom(props){
-    return(
-        <>
-            <input {...props.name}></input>
-            <input {...props.faction}></input>
-            
-                <select {...props.reputation} >
-                    <option>Cool</option>
-                    <option>Mah</option>
-                    <option>Bitch</option>
-                </select>
-        </>
-    );
-}
-
-function NameUI(props){
-    return(
-        <>
-            <h3>Ello</h3>
-            <div>{props.name}</div>
-            <div>{props.faction}</div>
-        </>
-    )
-}
-
 function DisplayStats(props){
     return(
         <>
@@ -106,4 +93,4 @@ function DisplayStats(props){
     )
 }
 
-export default NPCMaker;
+export default PlayerList;
