@@ -121,3 +121,31 @@ export let playerNames =
   "General",
   "MAMY"
 ]
+export let playerRace = 
+[
+"Elf",
+"Dwarf",
+"Dragonborn",
+"Gnome",
+"Hafl-Elf",
+"Hafling",
+"Half-Orc",
+"Human",
+"Tiefling"
+]
+export let Class = 
+[
+"Rouge",
+"Bard",
+"Barbarian",
+"Bard",
+"Cleric",
+"Monk",
+"Druid",
+"Fighter",
+"Paladin",
+"Ranger",
+"Sorcerer",
+"Warlock",
+"Wizard"
+]

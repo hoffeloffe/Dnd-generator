@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./GameBrowser.css"
+import { playerNames } from "./name.js";
 
 class PlayerList extends React.Component {
     constructor() {
@@ -30,13 +31,13 @@ class PlayerList extends React.Component {
             <>
                 <Ui onChange={this.onChange} stats ={this.state} />
                 <WatchWithHooks />
+                <div>Name: {playerNames[Math.floor(Math.random()*playerNames.length)]}</div>
                 <DisplayStats str = {StandardArray(stats)} dex = {StandardArray(stats)}  con = {StandardArray(stats)}  wis = {StandardArray(stats)}  int = {StandardArray(stats)}  cha = {StandardArray(stats)}/>
            </>
         );
-    }
-    
-    
+    }   
 }
+
 
 function Ui(props)
 {
@@ -81,9 +82,6 @@ function Ui(props)
                 </label>
             </div>
         </div>
-
-
-
         </>
     )
 }
