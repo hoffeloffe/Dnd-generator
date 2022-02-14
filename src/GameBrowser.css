@@ -44,3 +44,23 @@
   font-weight: bold;
   text-align: right;
 }
+
+.CharacterInfoBox {
+  width: 250px;
+  height: 250px;
+  border: 2px solid gray;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  background-color: rgb(146, 147, 155);
+}
+
+.Box {
+  font-size:larger;
+  font-family:monospace;
+}
+
+.stats {
+  column-count: 2;
+  font-size: small;
+}
