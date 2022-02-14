@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./GameBrowser.css"
+import { playerNames } from "./name.js";
 
 class PlayerList extends React.Component {
     constructor() {
@@ -11,9 +12,9 @@ class PlayerList extends React.Component {
         Con: 8,
         Cha: 8,
         Int: 8,
-      };
+      };    
     }
-    
+
     render()
     {
         var stats = [15, 14, 13, 12, 10, 8];
@@ -21,6 +22,7 @@ class PlayerList extends React.Component {
             <>
                 <Ui />
                 <WatchWithHooks />
+                <div>Name: {playerNames[Math.floor(Math.random()*playerNames.length)]}</div>
                 <DisplayStats str = {StandardArray(stats)} dex = {StandardArray(stats)}  con = {StandardArray(stats)}  wis = {StandardArray(stats)}  int = {StandardArray(stats)}  cha = {StandardArray(stats)}/>
            </>
         );
@@ -37,9 +39,6 @@ function Ui()
                 <option>Elver</option>
             </select>
         </div>
-
-
-
         </>
     )
 }
