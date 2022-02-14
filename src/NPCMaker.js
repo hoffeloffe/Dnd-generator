@@ -11,31 +11,75 @@ class PlayerList extends React.Component {
         Con: 8,
         Cha: 8,
         Int: 8,
+        name: ""
       };
+      this.handleChange = this.onChange.bind(this);
     }
-    
+
+    onChange(event){
+        let inputName = event.target.name;
+        let inputValue = event.target.value;
+        this.setState({[inputName]: inputValue});
+    }
+
     render()
     {
         var stats = [15, 14, 13, 12, 10, 8];
+
         return (
             <>
-                <Ui />
+                <Ui onChange={this.onChange} stats ={this.state} />
                 <WatchWithHooks />
                 <DisplayStats str = {StandardArray(stats)} dex = {StandardArray(stats)}  con = {StandardArray(stats)}  wis = {StandardArray(stats)}  int = {StandardArray(stats)}  cha = {StandardArray(stats)}/>
            </>
         );
     }
-  }
+    
+    
+}
 
-function Ui()
+function Ui(props)
 {
     return(
         <>
-
-        <div>
+            <h1>Character creator</h1>
+            <label>Character name</label>
+            <br/>
+            <input onChange={props.onChange} name="name" value={props.name}></input>
+            <br/>
+            <label>Pick race</label>
+            <br/>
             <select> Race
                 <option>Elver</option>
-            </select>
+                <option>Dwarf</option>
+                <option>Orc</option>
+                <option>Undead</option>
+            </select> <br/>
+
+            <button>Create</button>
+        
+        <hr/>
+        <div className="CharacterInfoBox">
+            <label className="Box">Character Info</label>
+            <hr/>
+            <label className="name">Name:{props.stats.name}</label>
+            <br/>
+            <label className="race">Race:</label>
+            <br/>
+            <label>Stats:</label>
+            <br/>
+            <div className="stats">
+                <label> 
+                         Str: {props.stats.Str}
+                    <br/>Dex: {props.stats.Dex}
+                    <br/>Con: {props.stats.Con}
+                </label>
+                <label>
+                    <br/>Int: {props.stats.Int}
+                    <br/>Wis: {props.stats.Wis}
+                    <br/>Cha: {props.stats.Cha}
+                </label>
+            </div>
         </div>
 
 
