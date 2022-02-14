@@ -26,6 +26,7 @@ class PlayerList extends React.Component {
         );
     }
   }
+  
 
 function Ui()
 {
