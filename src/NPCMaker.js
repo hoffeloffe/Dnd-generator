@@ -100,13 +100,7 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv)
     let wisdom = clonedCharacter.getElementsByClassName("wis")[0];
     let charisma = clonedCharacter.getElementsByClassName("cha")[0];
     
-    strength.innerText = "Str: " + PlayerStats[0];
-    dexterity.innerText = "Dex: " +  PlayerStats[1];
-    constitution.innerText = "Con: " +  PlayerStats[2];
-    intelligence.innerText = "Int: " +  PlayerStats[3];
-    wisdom.innerText = "Wis: " +  PlayerStats[4];
-    charisma.innerText = "Cha: " +  PlayerStats[5];
-
+    
     let acrobatics = clonedCharacter.getElementsByClassName("acrobaticst")[0];
     let animalHandling = clonedCharacter.getElementsByClassName("animalHandlingt")[0];
     let arcana = clonedCharacter.getElementsByClassName("arcanat")[0];
@@ -126,24 +120,31 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv)
     let survival = clonedCharacter.getElementsByClassName("survivalt")[0];
     let medicine = clonedCharacter.getElementsByClassName("medicinet")[0];
 
-    acrobatics.innerText = "acrobatics: ";
-    animalHandling.innerText = "animalHandling: ";
-    arcana.innerText = "arcana: ";
-    athletics.innerText = "athletics: ";
-    deception.innerText = "deception: ";
-    history.innerText = "history: ";
-    insight.innerText = "insight: ";
-    intimidation.innerText = "intimidation: ";
-    investigation.innerText = "investigation: ";
-    nature.innerText = "nature: ";
-    perception.innerText = "perception: ";
-    performance.innerText = "performance: ";
-    persuasion.innerText = "persuasion: ";
-    religion.innerText = "religion: ";
-    sleightofhand.innerText = "sleightofhand: ";
-    stealth.innerText = "stealth: ";
-    survival.innerText = "survival: ";
-    medicine.innerText = "medicine: ";
+    strength.innerText = "Str: " + PlayerStats[0];
+    dexterity.innerText = "Dex: " +  PlayerStats[1];
+    constitution.innerText = "Con: " +  PlayerStats[2];
+    intelligence.innerText = "Int: " +  PlayerStats[3];
+    wisdom.innerText = "Wis: " +  PlayerStats[4];
+    charisma.innerText = "Cha: " +  PlayerStats[5];
+
+    acrobatics.innerText = "acrobatics: "  +  Math.floor((PlayerStats[1]-10)/2);
+    animalHandling.innerText = "animalHandling: "  +  Math.floor((PlayerStats[4]-10)/2);
+    arcana.innerText = "arcana: "  +  Math.floor((PlayerStats[3]-10)/2);
+    athletics.innerText = "athletics: "  + Math.floor((PlayerStats[0]-10)/2);
+    deception.innerText = "deception: "  +  Math.floor((PlayerStats[5]-10)/2);
+    history.innerText = "history: "  +  Math.floor((PlayerStats[3]-10)/2);
+    insight.innerText = "insight: "  +  Math.floor((PlayerStats[4]-10)/2);
+    intimidation.innerText = "intimidation: "  +  Math.floor((PlayerStats[5]-10)/2);
+    investigation.innerText = "investigation: "  +  Math.floor((PlayerStats[3]-10)/2);
+    nature.innerText = "nature: "  +  Math.floor((PlayerStats[3]-10)/2);
+    perception.innerText = "perception: "  +  Math.floor((PlayerStats[4]-10)/2);
+    performance.innerText = "performance: "  +  Math.floor((PlayerStats[5]-10)/2);
+    persuasion.innerText = "persuasion: "  +  Math.floor((PlayerStats[5]-10)/2);
+    religion.innerText = "religion: "  +  Math.floor((PlayerStats[3]-10)/2);
+    sleightofhand.innerText = "sleightofhand: "  +  Math.floor((PlayerStats[1]-10)/2);
+    stealth.innerText = "stealth: "  +  Math.floor((PlayerStats[1]-10)/2);
+    survival.innerText = "survival: "  +  Math.floor((PlayerStats[5]-10)/2);
+    medicine.innerText = "medicine: "  +  Math.floor((PlayerStats[4]-10)/2);
     
     let clonedButton = clonedCharacter.getElementsByTagName("button")[0];
 
