@@ -87,8 +87,22 @@ function createCharector(Name,Race,Dndclass,PlayerStats)
     let dndclass = clonedCharacter.getElementsByClassName("dndclass")[0];
     dndclass.innerText = "Class:" + " " +  Dndclass;
 
-    let playerStats = clonedCharacter.getElementsByClassName("playerStats")[0];
-    playerStats.innerText = PlayerStats;
+    // let playerStats = clonedCharacter.getElementsByClassName("playerStats")[0];
+    // playerStats.innerText = PlayerStats;
+    // playerStats.innerText = PlayerStats;
+
+    let strength = clonedCharacter.getElementsByClassName("str")[0];
+    let dexterity = clonedCharacter.getElementsByClassName("dex")[0];
+    let constitution = clonedCharacter.getElementsByClassName("con")[0];
+    let intelligence = clonedCharacter.getElementsByClassName("int")[0];
+    let wisdom = clonedCharacter.getElementsByClassName("wis")[0];
+    let charisma = clonedCharacter.getElementsByClassName("cha")[0];
+    strength.innerText = "Str: " + PlayerStats[0];
+    dexterity.innerText = "Dex: " +  PlayerStats[1];
+    constitution.innerText = "Con: " +  PlayerStats[2];
+    intelligence.innerText = "Int: " +  PlayerStats[3];
+    wisdom.innerText = "Wis: " +  PlayerStats[4];
+    charisma.innerText = "Cha: " +  PlayerStats[5];
 
     let clonedButton = clonedCharacter.getElementsByTagName("button")[0];
 
@@ -130,17 +144,23 @@ function useDate()
 
 function DisplayStats(){
     var stats = [15, 14, 13, 12, 10, 8];
-    return(
-        <>
-            <h3>Stats</h3>
-            <div>Strength: {StandardArray(stats)} </div>
-            <div>Dexterity: {StandardArray(stats)} </div>
-            <div>Constitution: {StandardArray(stats)} </div>
-            <div>Intelligence: {StandardArray(stats)} </div>
-            <div>Wisdom: {StandardArray(stats)} </div>
-            <div>Charisma: {StandardArray(stats)} </div>
-        </>
-    )
+
+    var result = [StandardArray(stats), StandardArray(stats), StandardArray(stats), StandardArray(stats), StandardArray(stats), StandardArray(stats)]
+    // for(var i = 0; i < 5; i++){
+    //     result.push({StandardArray(stats)})
+    // }
+    return result;
+    // return(
+    //     <>
+    //         <h3>Stats</h3>
+    //         <div>Strength: {StandardArray(stats)} </div>
+    //         <div>Dexterity: {StandardArray(stats)} </div>
+    //         <div>Constitution: {StandardArray(stats)} </div>
+    //         <div>Intelligence: {StandardArray(stats)} </div>
+    //         <div>Wisdom: {StandardArray(stats)} </div>
+    //         <div>Charisma: {StandardArray(stats)} </div>
+    //     </>
+    // )
 }
 
 export default PlayerList;
