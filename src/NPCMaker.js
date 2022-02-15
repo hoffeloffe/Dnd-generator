@@ -15,15 +15,12 @@ class PlayerList extends React.Component {
         Int: 8,
         name: ""
       };
-      this.handleChange = this.onChange.bind(this);
     }
-
     
     render()
     {
         var stats = [15, 14, 13, 12, 10, 8];
-    
-        
+
         return (
             <>
                 <WatchWithHooks />
@@ -48,9 +45,6 @@ class PlayerList extends React.Component {
   let charTemp = document.getElementById("CharacterTemplate");
   let creatbtn = document.getElementById("btnCreate");
 
-
-
-
 creatbtn.onclick = function()
 {
     createCharector(inputName.value, inputRace.value, inputClas.value);
@@ -73,13 +67,13 @@ function createCharector(Name,Race,Dndclass)
     clonedCharacter.removeAttribute("CharacterTemplate");
 
     let clonedName = clonedCharacter.getElementsByClassName("CharacterName")[0];
-    clonedName.innerText = Name;
+    clonedName.innerText = "Name:" + " " + Name;
 
     let raceName = clonedCharacter.getElementsByClassName("RaceName")[0];
-    raceName.innerText = Race;
+    raceName.innerText = "Race:" + " " + Race;
 
     let dndclass = clonedCharacter.getElementsByClassName("dndclass")[0];
-    dndclass.innerText = Dndclass;
+    dndclass.innerText = "Class:" + " " +  Dndclass;
 
     let clonedButton = clonedCharacter.getElementsByTagName("button")[0];
 
@@ -91,53 +85,6 @@ function createCharector(Name,Race,Dndclass)
     characterContainerElement.appendChild(clonedCharacter);
 }
 
-
-function Ui(props)
-{
-    return(
-        <>
-            <h1>Character creator</h1>
-            <label>Character name</label>
-            <br/>
-            <input onChange={props.onChange} name="name" value={props.name}></input>
-            <br/>
-            <label>Pick race</label>
-            <br/>
-            <select> Race
-                <option>Elver</option>
-                <option>Dwarf</option>
-                <option>Orc</option>
-                <option>Undead</option>
-            </select> <br/>
-
-            <button>Create</button>
-        
-        <hr/>
-        <div className="CharacterInfoBox">
-            <label className="Box">Character Info</label>
-            <hr/>
-            <label className="name">Name:{props.stats.name}</label>
-            <br/>
-            <label className="race">Race:</label>
-            <br/>
-            <label>Stats:</label>
-            <br/>
-            <div className="stats">
-                <label> 
-                         Str: {props.stats.Str}
-                    <br/>Dex: {props.stats.Dex}
-                    <br/>Con: {props.stats.Con}
-                </label>
-                <label>
-                    <br/>Int: {props.stats.Int}
-                    <br/>Wis: {props.stats.Wis}
-                    <br/>Cha: {props.stats.Cha}
-                </label>
-            </div>
-        </div>
-        </>
-    )
-}
 
 function StandardArray(props)
 {
