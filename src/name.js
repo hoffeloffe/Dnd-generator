@@ -135,17 +135,125 @@ export let playerRace =
 ]
 export let playerClass = 
 [
-"Rouge",
-"Bard",
-"Barbarian",
-"Bard",
-"Cleric",
-"Monk",
-"Druid",
-"Fighter",
-"Paladin",
-"Ranger",
-"Sorcerer",
-"Warlock",
-"Wizard"
+  {
+    name: 'Rouge',
+    sub: 
+    [
+      'Shadow',
+      'Wite',
+      'Poison',
+    ]
+  },
+  {
+    name: 'Wizard',
+    sub: 
+    [
+      'Shadow',
+      'Wite',
+      'Poison',
+    ]
+  },
+  {
+    name: 'Warlock',
+    sub: 
+    [
+      'Shadow',
+      'Wite',
+      'Poison',
+    ]
+  },
+  {
+    name: 'Sorcerer',
+    sub: 
+    [
+      'Shadow',
+      'Wite',
+      'Poison',
+    ]
+  },
+  {
+    name: 'Ranger',
+    sub: 
+    [
+      'Shadow',
+      'Wite',
+      'Poison',
+    ]
+  },
+  {
+    name: 'Paladin',
+    sub: 
+    [
+      'Shadow',
+      'Wite',
+      'Poison',
+    ]
+  },
+  {
+    name: 'Fighter',
+    sub: 
+    [
+      'Shadow',
+      'Wite',
+      'Poison',
+    ]
+  },
+  {
+    name: 'Druid',
+    sub: 
+    [
+      'Shadow',
+      'Wite',
+      'Poison',
+    ]
+  },
+  {
+    name: 'Monk',
+    sub: 
+    [
+      'Shadow',
+      'Wite',
+      'Poison',
+    ]
+  },
+  {
+    name: 'Bard',
+    sub: 
+    [
+      'Shadow',
+      'Wite',
+      'Poison',
+    ]
+  },
+  {
+    name: 'Cleric',
+    sub: 
+    [
+      'Shadow',
+      'Wite',
+      'Poison',
+    ]
+  },
+  {
+    name: 'Barbarian',
+    sub: 
+    [
+      'Shadow',
+      'Wite',
+      'Poison',
+    ]
+  },
+]
+export let playerFeats = 
+[
+{
+  name: 'Actor',
+  funk: 'dex',
+  des: ''
+},
+{
+  name: 'Alert',
+  funk: 'con',
+  des: ''
+},
 ]
