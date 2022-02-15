@@ -1,7 +1,7 @@
 import { getValue } from "@testing-library/user-event/dist/utils";
 import React, { useState, useEffect } from "react";
 import "./GameBrowser.css"
-import { playerNames } from "./name.js";
+import { playerNames, playerRace, playerClass  } from "./name.js";
 
 class PlayerList extends React.Component {
     constructor() {
@@ -15,26 +15,16 @@ class PlayerList extends React.Component {
         Int: 8,
         name: ""
       };
-      this.handleChange = this.onChange.bind(this);
     }
 
     
     render()
-    {
-        var stats = [15, 14, 13, 12, 10, 8];
-    
+    {  
         
         return (
             <>
                 <WatchWithHooks />
-                <DisplayStats 
-                str = {StandardArray(stats)} 
-                dex = {StandardArray(stats)}  
-                con = {StandardArray(stats)}  
-                wis = {StandardArray(stats)}  
-                int = {StandardArray(stats)}  
-                cha = {StandardArray(stats)}
-                />
+                <DisplayStats />
            </>
         );
     }
@@ -47,9 +37,26 @@ class PlayerList extends React.Component {
   
   let charTemp = document.getElementById("CharacterTemplate");
   let creatbtn = document.getElementById("btnCreate");
+  let rancrtbtn = document.getElementById("rancrtbtn");
 
+function randomPropNumber(props)
+{
+    var selected = Math.floor(Math.random()*props.length);
+    return selected;
+}
 
-
+rancrtbtn.onclick = function()
+{
+    createCharector(
+        playerNames[randomPropNumber(playerNames)], 
+        playerRace[randomPropNumber(playerRace)], 
+        playerClass[randomPropNumber(playerClass)],
+        DisplayStats()
+        );
+    inputName.value = "";
+    inputRace.value = "";
+    inputClas.value = "";
+}
 
 creatbtn.onclick = function()
 {
@@ -59,7 +66,7 @@ creatbtn.onclick = function()
     inputClas.value = "";
 }
 
-function createCharector(Name,Race,Dndclass)
+function createCharector(Name,Race,Dndclass,PlayerStats)
 {
     if(Name === '')
     Name = "Hoffe";
@@ -80,6 +87,9 @@ function createCharector(Name,Race,Dndclass)
 
     let dndclass = clonedCharacter.getElementsByClassName("dndclass")[0];
     dndclass.innerText = Dndclass;
+
+    let playerStats = clonedCharacter.getElementsByClassName("playerStats")[0];
+    playerStats.innerText = PlayerStats;
 
     let clonedButton = clonedCharacter.getElementsByTagName("button")[0];
 
@@ -166,16 +176,17 @@ function useDate()
     return date;
 }
 
-function DisplayStats(props){
+function DisplayStats(){
+    var stats = [15, 14, 13, 12, 10, 8];
     return(
         <>
             <h3>Stats</h3>
-            <div>Strength: {props.str}</div>
-            <div>Dexterity: {props.dex}</div>
-            <div>Constitution: {props.con}</div>
-            <div>Intelligence: {props.int}</div>
-            <div>Wisdom: {props.wis}</div>
-            <div>Charisma: {props.cha}</div>
+            <div>Strength: {StandardArray(stats)} </div>
+            <div>Dexterity: {StandardArray(stats)} </div>
+            <div>Constitution: {StandardArray(stats)} </div>
+            <div>Intelligence: {StandardArray(stats)} </div>
+            <div>Wisdom: {StandardArray(stats)} </div>
+            <div>Charisma: {StandardArray(stats)} </div>
         </>
     )
 }

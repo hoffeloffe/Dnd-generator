@@ -133,7 +133,7 @@ export let playerRace =
 "Human",
 "Tiefling"
 ]
-export let Class = 
+export let playerClass = 
 [
 "Rouge",
 "Bard",
