@@ -45,7 +45,7 @@
   text-align: right;
 }
 
-.CharacterInfoBox {
+#CharacterTemplate {
   width: 250px;
   height: 250px;
   border: 2px solid gray;
