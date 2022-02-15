@@ -46,8 +46,8 @@
 }
 
 #CharacterTemplate {
-  width: 250px;
-  height: 250px;
+  width: 500px;
+  height: 275px;
   border: 2px solid gray;
   padding: 10px;
   border-radius: 5px;
@@ -61,7 +61,19 @@
   font-family:monospace;
 }
 
+.lowerPart {
+  column-count: 2;
+}
+.upperPart {
+  column-count: 2;
+}
+
 .stats {
+  font-size: small;
+  column-count: 2;
+}
+
+.skills {
   font-size: small;
   column-count: 2;
 }

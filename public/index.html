@@ -1,98 +1,111 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>DND</title>
 </head>
+
 <body>
   <h1>CharacterMaker 2.0</h1>
   <h4>Basic info:</h4>
   <label>Name:</label>
-  <p><input id="inputname"/></p>
-  
+  <p><input id="inputname" /></p>
+
   <p><label>Race:</label></p>
 
   <select id="inputRace" value="Elf">
-  <option value="Elf">Elf</option>
-  <option value="DragonBorn">DragonBorn</option>
+    <option value="Elf">Elf</option>
+    <option value="DragonBorn">DragonBorn</option>
   </select>
 
   <p><label>Class:</label></p>
 
   <select id="inputClass" value="Mage">
-  <option value ="Mage">Mage</option>
-  <option value ="Rouge">Rouge</option>
+    <option value="Mage">Mage</option>
+    <option value="Rouge">Rouge</option>
   </select>
 
-  <p><button id="btnCreate" >Create Charector</button>
- <button id="rancrtbtn" >Random Create Charector</button></p>
+  <p><button id="btnCreate">Create Charector</button>
+    <button id="rancrtbtn">Random Create Charector</button>
+  </p>
 
   <div id="CharacterContainer">
-      <div id="CharacterTemplate" class="quest" hidden>
-          <button class = "btnRemoveCharacter"><small>x</small></button> <label>Character Info</label>
-          <hr>
-          <div class = "CharacterName" ></div>
-          <div class = "RaceName"></div>
-          <div class = "dndclass"></div>
-          <div class = "feats"></div>
-          <div class = "currentlv"></div>
-          <hr>
-          <div class="stats">
-            <div>
-            <label class = "str"></label>
-            <br/>
-            <label class = "dex"></label>
-            <br/>
-            <label class = "con"></label>
-            </div>
-            <label class = "int"></label>
-            <br/>
-            <label class = "wis"></label>
-            <br/>
-            <label class = "cha"></label>
+    <div id="CharacterTemplate" class="quest" hidden>
+      <button class="btnRemoveCharacter"><small>x</small></button> <label>Character Info</label>
+      <hr>
+      <div class="upperPart">
+        <li class="CharacterName" style="font-size: small;"></li> 
+        <li class="RaceName" style="font-size: small;"></li>
+        <li class="dndclass" style="font-size: small;"></li>
+        <li class="feats" style="font-size: small;"></li>
+        <li class="currentlv" style="font-size: small;"></li>
+        <br/>
+        <div class="stats">
+          <div>
+            <label class="str"></label>
+            <br />
+            <label class="dex"></label>
+            <br />
+            <label class="con"></label>
+          </div>
+          <label class="int"></label>
+          <br />
+          <label class="wis"></label>
+          <br />
+          <label class="cha"></label>
+        </div>
+      </div>
+
+      <br/>
+      <hr>
+
+      <div class="lowerPart">
+        <div class="skills">
+          <div>
+            <label class="acrobaticst"></label>
+            <br />
+            <label class="animalHandlingt"></label>
+            <br />
+            <label class="arcanat"></label>
+            <br />
+            <label class="athleticst"></label>
+            <br />
+            <label class="deceptiont"></label>
+            <br />
+            <label class="historyt"></label>
+            <br />
+            <label class="insightt"></label>
+            <br />
+            <label class="intimidationt"></label>
+            <br />
+            <label class="investigationt"></label>
+            <br />
           </div>
 
-          <div class = "skills">
-            <label class = "acrobaticst"></label>
-            <br/>
-            <label class = "animalHandlingt"></label>
-            <br/>
-            <label class = "arcanat"></label>
-            <br/>
-            <label class = "athleticst"></label>
-            <br/>
-            <label class = "deceptiont"></label>
-            <br/>
-            <label class = "historyt"></label>
-            <br/>
-            <label class = "insightt"></label>
-            <br/>
-            <label class = "intimidationt"></label>
-            <br/>
-            <label class = "investigationt"></label>
-            <br/>
-            <label class = "medicinet"></label>
-            <br/>
-            <label class = "naturet"></label>
-            <br/>
-            <label class = "perceptiont"></label>
-            <br/>
-            <label class = "performancet"></label>
-            <br/>
-            <label class = "persuasiont"></label>
-            <br/>
-            <label class = "religiont"></label>
-            <br/>
-            <label class = "sleightofhandt"></label>
-            <br/>
-            <label class = "stealtht"></label>
-            <br/>
-            <label class = "survivalt"></label>
-          </div>
-          </div>
-          <hr>
+          <label class="medicinet"></label>
+          <br />
+          <label class="naturet"></label>
+          <br />
+          <label class="perceptiont"></label>
+          <br />
+          <label class="performancet"></label>
+          <br />
+          <label class="persuasiont"></label>
+          <br />
+          <label class="religiont"></label>
+          <br />
+          <label class="sleightofhandt"></label>
+          <br />
+          <label class="stealtht"></label>
+          <br />
+          <label class="survivalt"></label>
+        </div>
       </div>
+    </div>
+  </div>
   </div>
 
   <div id="Root"></div>
 </body>
+
 </html>
