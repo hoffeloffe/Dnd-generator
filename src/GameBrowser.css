@@ -53,6 +53,7 @@
   border-radius: 5px;
   margin-bottom: 15px;
   background-color: rgb(146, 147, 155);
+  
 }
 
 .Box {
@@ -61,6 +62,6 @@
 }
 
 .stats {
-  column-count: 2;
   font-size: small;
+  column-count: 2;
 }
