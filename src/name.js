@@ -257,3 +257,22 @@ export let playerFeats =
   des: ''
 },
 ]
+
+export let playerBackground =
+[
+  {
+    name: 'Gladiator',
+    funk: 'dex',
+    des: ''
+  },
+  {
+    name: 'Noble',
+    funk: 'dex',
+    des: ''
+  },
+  {
+    name: 'Noob',
+    funk: 'dex',
+    des: ''
+  },
+]

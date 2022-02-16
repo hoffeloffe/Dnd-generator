@@ -1,7 +1,7 @@
 //import { getValue } from "@testing-library/user-event/dist/utils";
 import React, { useState, useEffect } from "react";
 import "./GameBrowser.css"
-import { playerNames, playerRace, playerClass, playerFeats  } from "./name.js";
+import { playerNames, playerRace, playerClass, playerFeats, playerBackground  } from "./name.js";
 
 class PlayerList extends React.Component {
     // constructor() {
@@ -44,7 +44,8 @@ rancrtbtn.onclick = function()
         playerClass[randomPropNumber(playerClass)],
         DisplayStats(),
         playerFeats[randomPropNumber(playerFeats)],
-        Math.floor(Math.random()*4)
+        Math.floor(Math.random()*4),
+        playerBackground[randomPropNumber(playerBackground)],
         );
 }
 
@@ -53,7 +54,7 @@ creatbtn.onclick = function()
     createCharector(inputName.value, inputRace.value, inputClas.value);
 }
 
-function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv)
+function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, PlayerBackground)
 {
     if(Name === '')
     Name = "Hoffe";
@@ -92,6 +93,9 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv)
 
     let currentlv = clonedCharacter.getElementsByClassName("currentlv")[0];
     currentlv.innerText = "Lv: " +  Currentlv;
+
+    let playerBackground = clonedCharacter.getElementsByClassName("background")[0];
+    playerBackground.innerText = "Background: " +  PlayerBackground.name;
 
     let strength = clonedCharacter.getElementsByClassName("str")[0];
     let dexterity = clonedCharacter.getElementsByClassName("dex")[0];
