@@ -47,7 +47,7 @@
 
 #CharacterTemplate {
   width: 500px;
-  height: 275px;
+  height: 300px;
   border: 2px solid gray;
   padding: 10px;
   border-radius: 5px;
@@ -66,12 +66,14 @@
   font-family:monospace;
 }
 
+.upperPart {
+  column-count: 3;
+}
+
 .lowerPart {
   column-count: 2;
 }
-.upperPart {
-  column-count: 2;
-}
+
 
 .stats {
   font-size: small;
