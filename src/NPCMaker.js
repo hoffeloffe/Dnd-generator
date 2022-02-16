@@ -7,9 +7,9 @@ class PlayerList extends React.Component {
     // constructor() {
     //   super();
     // }
-    
+
     render()
-    {  
+    {
         return (
             <>
                 <WatchWithHooks />
@@ -24,11 +24,11 @@ class PlayerList extends React.Component {
   let inputName = document.getElementById('inputname');
   let inputRace = document.getElementById("inputRace");
   let inputClas = document.getElementById("inputClass");
-  
+
   let charTemp = document.getElementById("CharacterTemplate");
   let creatbtn = document.getElementById("btnCreate");
   let rancrtbtn = document.getElementById("rancrtbtn");
-  
+
 
 function randomPropNumber(props)
 {
@@ -39,12 +39,12 @@ function randomPropNumber(props)
 rancrtbtn.onclick = function()
 {
     createCharector(
-        playerNames[randomPropNumber(playerNames)], 
-        playerRace[randomPropNumber(playerRace)], 
+        playerNames[randomPropNumber(playerNames)],
+        playerRace[randomPropNumber(playerRace)],
         playerClass[randomPropNumber(playerClass)],
         DisplayStats(),
         playerFeats[randomPropNumber(playerFeats)],
-        Math.floor(Math.random()*4),
+        Math.floor(Math.random()*4 + 1),
         playerBackground[randomPropNumber(playerBackground)],
         );
 }
@@ -73,8 +73,8 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     {
         supclass = '';
     }
-    
-    
+
+
     let clonedCharacter = charTemp.cloneNode(true);
     clonedCharacter.removeAttribute("hidden");
     clonedCharacter.removeAttribute("CharacterTemplate");
@@ -95,18 +95,39 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     currentlv.innerText = "Lv: " +  Currentlv;
 
     let playerBackground = clonedCharacter.getElementsByClassName("background")[0];
-    playerBackground.innerText = "Background: " +  PlayerBackground.name;
+    playerBackground.innerText = "Back: " +  PlayerBackground.name;
 
-    
-
+    /////
+    // STATS
+    /////
+    // Gather stats
     let strength = clonedCharacter.getElementsByClassName("str")[0];
     let dexterity = clonedCharacter.getElementsByClassName("dex")[0];
     let constitution = clonedCharacter.getElementsByClassName("con")[0];
     let intelligence = clonedCharacter.getElementsByClassName("int")[0];
     let wisdom = clonedCharacter.getElementsByClassName("wis")[0];
     let charisma = clonedCharacter.getElementsByClassName("cha")[0];
-    
-    
+
+    // Set the stats
+    var str = PlayerStats[0];
+    var dex = PlayerStats[1];
+    var con = PlayerStats[2];
+    var int = PlayerStats[3];
+    var wis = PlayerStats[4];
+    var cha = PlayerStats[5];
+
+    strength.innerText = "Str: " + str;
+    dexterity.innerText = "Dex: " + dex;
+    constitution.innerText = "Con: " + con;
+    intelligence.innerText = "Int: " + int;
+    wisdom.innerText = "Wis: " + wis;
+    charisma.innerText = "Cha: " + cha;
+
+    /////
+    // SKILLS
+    /////
+    // Gather all the class skills
+    // TODO: Find a way to hide it/make it nicer
     let acrobatics = clonedCharacter.getElementsByClassName("acrobaticst")[0];
     let animalHandling = clonedCharacter.getElementsByClassName("animalHandlingt")[0];
     let arcana = clonedCharacter.getElementsByClassName("arcanat")[0];
@@ -126,32 +147,29 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     let survival = clonedCharacter.getElementsByClassName("survivalt")[0];
     let medicine = clonedCharacter.getElementsByClassName("medicinet")[0];
 
-    strength.innerText = "Str: " + PlayerStats[0];
-    dexterity.innerText = "Dex: " +  PlayerStats[1];
-    constitution.innerText = "Con: " +  PlayerStats[2];
-    intelligence.innerText = "Int: " +  PlayerStats[3];
-    wisdom.innerText = "Wis: " +  PlayerStats[4];
-    charisma.innerText = "Cha: " +  PlayerStats[5];
+    // Set a list with all proficiency bonuses to keep it neat
+    var profList = PlayerBackground.pro
 
-    acrobatics.innerText = "acrobatics: "  +  Math.floor((PlayerStats[1]-10)/2) + handleProficien('acrobatics',PlayerBackground.pro,Currentlv);
-    animalHandling.innerText = "animalHandling: "  +  Math.floor((PlayerStats[4]-10)/2) + handleProficien('animalHandling',PlayerBackground.pro,Currentlv);
-    arcana.innerText = "arcana: "  +  Math.floor((PlayerStats[3]-10)/2) + handleProficien('arcana',PlayerBackground.pro,Currentlv);
-    athletics.innerText = "athletics: "  + Math.floor((PlayerStats[0]-10)/2) + handleProficien('athletics',PlayerBackground.pro,Currentlv);
-    deception.innerText = "deception: "  +  Math.floor((PlayerStats[5]-10)/2) + handleProficien('deception',PlayerBackground.pro,Currentlv);
-    history.innerText = "history: "  +  Math.floor((PlayerStats[3]-10)/2) + handleProficien('history',PlayerBackground.pro,Currentlv);
-    insight.innerText = "insight: "  +  Math.floor((PlayerStats[4]-10)/2) + handleProficien('insight',PlayerBackground.pro,Currentlv);
-    intimidation.innerText = "intimidation: "  +  Math.floor((PlayerStats[5]-10)/2) + handleProficien('intimidation',PlayerBackground.pro,Currentlv);
-    investigation.innerText = "investigation: "  +  Math.floor((PlayerStats[3]-10)/2) + handleProficien('investigation',PlayerBackground.pro,Currentlv);
-    nature.innerText = "nature: "  +  Math.floor((PlayerStats[3]-10)/2) + handleProficien('nature',PlayerBackground.pro,Currentlv);
-    perception.innerText = "perception: "  +  Math.floor((PlayerStats[4]-10)/2) + handleProficien('perception',PlayerBackground.pro,Currentlv);
-    performance.innerText = "performance: "  +  Math.floor((PlayerStats[5]-10)/2) + handleProficien('performance',PlayerBackground.pro,Currentlv);
-    persuasion.innerText = "persuasion: "  +  Math.floor((PlayerStats[5]-10)/2) + handleProficien('persuasion',PlayerBackground.pro,Currentlv);
-    religion.innerText = "religion: "  +  Math.floor((PlayerStats[3]-10)/2) + handleProficien('religion',PlayerBackground.pro,Currentlv);
-    sleightofhand.innerText = "sleightofhand: "  +  Math.floor((PlayerStats[1]-10)/2) + handleProficien('sleightofhand',PlayerBackground.pro,Currentlv);;
-    stealth.innerText = "stealth: "  +  Math.floor((PlayerStats[1]-10)/2) + handleProficien('stealth',PlayerBackground.pro,Currentlv);
-    survival.innerText = "survival: "  +  Math.floor((PlayerStats[5]-10)/2) + handleProficien('survival',PlayerBackground.pro,Currentlv);
-    medicine.innerText = "medicine: "  +  Math.floor((PlayerStats[4]-10)/2) + handleProficien('medicine',PlayerBackground.pro,Currentlv);
-    
+    // Set the shown skill bonus.
+    acrobatics.innerText = "acrobatics: " + handleProficien('acrobatics', profList, Currentlv, dex);
+    animalHandling.innerText = "animalHandling: " + handleProficien('animalHandling', profList, Currentlv, wis);
+    arcana.innerText = "arcana: " + handleProficien('arcana', profList, Currentlv, int);
+    athletics.innerText = "athletics: " + handleProficien('athletics', profList, Currentlv, str);
+    deception.innerText = "deception: " + handleProficien('deception', profList, Currentlv, cha);
+    history.innerText = "history: " + handleProficien('history', profList, Currentlv, int);
+    insight.innerText = "insight: " + handleProficien('insight', profList, Currentlv, wis);
+    intimidation.innerText = "intimidation: " + handleProficien('intimidation', profList, Currentlv, cha);
+    investigation.innerText = "investigation: " + handleProficien('investigation', profList, Currentlv, int);
+    nature.innerText = "nature: " + handleProficien('nature', profList, Currentlv, int);
+    perception.innerText = "perception: " + handleProficien('perception', profList, Currentlv, wis);
+    performance.innerText = "performance: " + handleProficien('performance', profList, Currentlv, cha);
+    persuasion.innerText = "persuasion: " + handleProficien('persuasion', profList, Currentlv, cha);
+    religion.innerText = "religion: " + handleProficien('religion', profList, Currentlv, int);
+    sleightofhand.innerText = "sleightofhand: " + handleProficien('sleightofhand', profList, Currentlv, dex);
+    stealth.innerText = "stealth: " + handleProficien('stealth', profList, Currentlv, dex);
+    survival.innerText = "survival: " + handleProficien('survival', profList, Currentlv, wis);
+    medicine.innerText = "medicine: " + handleProficien('medicine', profList, Currentlv, wis);
+
 
     let clonedButton = clonedCharacter.getElementsByTagName("button")[0];
 
@@ -159,7 +177,7 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     {
         this.parentNode.remove();
     };
-    
+
     characterContainerElement.appendChild(clonedCharacter);
 
     inputName.value = "";
@@ -167,12 +185,41 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     inputClas.value = "";
 }
 
-function handleProficien(skill, proficien, currentlv){
-    let proficienbonus = Math.floor(2 + (currentlv-1)/4);
-    if(proficien.includes(skill))
-        return proficienbonus;
-    else
-        return 0;
+// Calculate the skill level
+function handleProficien(skill, prof, currentlv, stat)
+{
+    var result = 0
+    if(stat > 11)
+        result = Math.floor((stat - 10) / 2);
+    else if(stat < 10) // TODO: If time, find a better way to do this - -10 & inverting the value plus some flooring & /2?
+        switch (stat)
+    {
+        case (9):
+        case (8):
+             result = -1;
+            break;
+        case (7):
+        case (6):
+            result = -2;
+            break;
+        case (5):
+        case (4):
+            result = -3;
+            break;
+        case (3):
+        case (2):
+            result = -4;
+            break;
+        default:
+            result = -5;
+            break;
+     }
+
+    if(prof.includes(skill)){
+        var profBonus = Math.floor(2 + (currentlv-1)/4);
+        result += profBonus;
+    }
+    return result
 }
 
 
