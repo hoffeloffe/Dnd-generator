@@ -97,6 +97,8 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     let playerBackground = clonedCharacter.getElementsByClassName("background")[0];
     playerBackground.innerText = "Background: " +  PlayerBackground.name;
 
+    
+
     let strength = clonedCharacter.getElementsByClassName("str")[0];
     let dexterity = clonedCharacter.getElementsByClassName("dex")[0];
     let constitution = clonedCharacter.getElementsByClassName("con")[0];
@@ -131,25 +133,26 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     wisdom.innerText = "Wis: " +  PlayerStats[4];
     charisma.innerText = "Cha: " +  PlayerStats[5];
 
-    acrobatics.innerText = "acrobatics: "  +  Math.floor((PlayerStats[1]-10)/2);
-    animalHandling.innerText = "animalHandling: "  +  Math.floor((PlayerStats[4]-10)/2);
-    arcana.innerText = "arcana: "  +  Math.floor((PlayerStats[3]-10)/2);
-    athletics.innerText = "athletics: "  + Math.floor((PlayerStats[0]-10)/2);
-    deception.innerText = "deception: "  +  Math.floor((PlayerStats[5]-10)/2);
-    history.innerText = "history: "  +  Math.floor((PlayerStats[3]-10)/2);
-    insight.innerText = "insight: "  +  Math.floor((PlayerStats[4]-10)/2);
-    intimidation.innerText = "intimidation: "  +  Math.floor((PlayerStats[5]-10)/2);
-    investigation.innerText = "investigation: "  +  Math.floor((PlayerStats[3]-10)/2);
-    nature.innerText = "nature: "  +  Math.floor((PlayerStats[3]-10)/2);
-    perception.innerText = "perception: "  +  Math.floor((PlayerStats[4]-10)/2);
-    performance.innerText = "performance: "  +  Math.floor((PlayerStats[5]-10)/2);
-    persuasion.innerText = "persuasion: "  +  Math.floor((PlayerStats[5]-10)/2);
-    religion.innerText = "religion: "  +  Math.floor((PlayerStats[3]-10)/2);
-    sleightofhand.innerText = "sleightofhand: "  +  Math.floor((PlayerStats[1]-10)/2);
-    stealth.innerText = "stealth: "  +  Math.floor((PlayerStats[1]-10)/2);
-    survival.innerText = "survival: "  +  Math.floor((PlayerStats[5]-10)/2);
-    medicine.innerText = "medicine: "  +  Math.floor((PlayerStats[4]-10)/2);
+    acrobatics.innerText = "acrobatics: "  +  Math.floor((PlayerStats[1]-10)/2) + handleProficien('acrobatics',PlayerBackground.pro,Currentlv);
+    animalHandling.innerText = "animalHandling: "  +  Math.floor((PlayerStats[4]-10)/2) + handleProficien('animalHandling',PlayerBackground.pro,Currentlv);
+    arcana.innerText = "arcana: "  +  Math.floor((PlayerStats[3]-10)/2) + handleProficien('arcana',PlayerBackground.pro,Currentlv);
+    athletics.innerText = "athletics: "  + Math.floor((PlayerStats[0]-10)/2) + handleProficien('athletics',PlayerBackground.pro,Currentlv);
+    deception.innerText = "deception: "  +  Math.floor((PlayerStats[5]-10)/2) + handleProficien('deception',PlayerBackground.pro,Currentlv);
+    history.innerText = "history: "  +  Math.floor((PlayerStats[3]-10)/2) + handleProficien('history',PlayerBackground.pro,Currentlv);
+    insight.innerText = "insight: "  +  Math.floor((PlayerStats[4]-10)/2) + handleProficien('insight',PlayerBackground.pro,Currentlv);
+    intimidation.innerText = "intimidation: "  +  Math.floor((PlayerStats[5]-10)/2) + handleProficien('intimidation',PlayerBackground.pro,Currentlv);
+    investigation.innerText = "investigation: "  +  Math.floor((PlayerStats[3]-10)/2) + handleProficien('investigation',PlayerBackground.pro,Currentlv);
+    nature.innerText = "nature: "  +  Math.floor((PlayerStats[3]-10)/2) + handleProficien('nature',PlayerBackground.pro,Currentlv);
+    perception.innerText = "perception: "  +  Math.floor((PlayerStats[4]-10)/2) + handleProficien('perception',PlayerBackground.pro,Currentlv);
+    performance.innerText = "performance: "  +  Math.floor((PlayerStats[5]-10)/2) + handleProficien('performance',PlayerBackground.pro,Currentlv);
+    persuasion.innerText = "persuasion: "  +  Math.floor((PlayerStats[5]-10)/2) + handleProficien('persuasion',PlayerBackground.pro,Currentlv);
+    religion.innerText = "religion: "  +  Math.floor((PlayerStats[3]-10)/2) + handleProficien('religion',PlayerBackground.pro,Currentlv);
+    sleightofhand.innerText = "sleightofhand: "  +  Math.floor((PlayerStats[1]-10)/2) + handleProficien('sleightofhand',PlayerBackground.pro,Currentlv);;
+    stealth.innerText = "stealth: "  +  Math.floor((PlayerStats[1]-10)/2) + handleProficien('stealth',PlayerBackground.pro,Currentlv);
+    survival.innerText = "survival: "  +  Math.floor((PlayerStats[5]-10)/2) + handleProficien('survival',PlayerBackground.pro,Currentlv);
+    medicine.innerText = "medicine: "  +  Math.floor((PlayerStats[4]-10)/2) + handleProficien('medicine',PlayerBackground.pro,Currentlv);
     
+
     let clonedButton = clonedCharacter.getElementsByTagName("button")[0];
 
     clonedButton.onclick = function()
@@ -163,6 +166,15 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     inputRace.value = "";
     inputClas.value = "";
 }
+
+function handleProficien(skill, proficien, currentlv){
+    let proficienbonus = Math.floor(2 + (currentlv-1)/4);
+    if(proficien.includes(skill))
+        return proficienbonus;
+    else
+        return 0;
+}
+
 
 
 function StandardArray(props)

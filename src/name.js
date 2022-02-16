@@ -262,17 +262,17 @@ export let playerBackground =
 [
   {
     name: 'Gladiator',
-    funk: 'dex',
+    pro: ['acrobatics', 'performance'],
     des: ''
   },
   {
     name: 'Noble',
-    funk: 'dex',
+    pro: ['history', 'persuasion'],
     des: ''
   },
   {
-    name: 'Noob',
-    funk: 'dex',
+    name: 'Spy',
+    pro: ['deception', 'stealth'],
     des: ''
   },
 ]
