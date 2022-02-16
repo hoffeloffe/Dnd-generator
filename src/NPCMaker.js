@@ -188,32 +188,8 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
 // Calculate the skill level
 function handleProficien(skill, prof, currentlv, stat)
 {
-    var result = 0
-    if(stat > 11)
-        result = Math.floor((stat - 10) / 2);
-    else if(stat < 10) // TODO: If time, find a better way to do this - -10 & inverting the value plus some flooring & /2?
-        switch (stat)
-    {
-        case (9):
-        case (8):
-             result = -1;
-            break;
-        case (7):
-        case (6):
-            result = -2;
-            break;
-        case (5):
-        case (4):
-            result = -3;
-            break;
-        case (3):
-        case (2):
-            result = -4;
-            break;
-        default:
-            result = -5;
-            break;
-     }
+    // If the skill is 10, bonus is 0. Otherwise it changes on every even it goes up or uneven down.
+    var result = Math.floor((stat - 10) / 2);
 
     if(prof.includes(skill)){
         var profBonus = Math.floor(2 + (currentlv-1)/4);
