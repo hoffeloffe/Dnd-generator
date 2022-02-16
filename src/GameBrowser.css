@@ -46,13 +46,15 @@
 }
 
 #CharacterTemplate {
+
+
   width: 500px;
   height: 300px;
   border: 2px solid gray;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 15px;
-  background-color: rgb(146, 147, 155);
+  background-color: rgb(112, 113, 119);
   
   
 }
@@ -61,9 +63,13 @@
   float: right;
 }
 
-.Box {
-  font-size:larger;
-  font-family:monospace;
+#body {
+  width: 1000px;
+  height: 700px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  background-color: rgb(255, 254, 220);
 }
 
 .upperPart {
