@@ -54,6 +54,11 @@
   margin-bottom: 15px;
   background-color: rgb(146, 147, 155);
   
+  
+}
+
+.btnRemoveCharacter {
+  float: right;
 }
 
 .Box {
