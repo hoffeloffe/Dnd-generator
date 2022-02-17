@@ -200,11 +200,12 @@ function handleProficien(skill, prof, currentlv, stat)
 
 
 
-function StandardArray(props)
+function StandardArray(stats, callBack)
 {
-    var selected = Math.floor(Math.random()*props.length);
-    var stat = props[selected]
-    props.splice(selected, 1);
+    // Callbacks in case we want to sort it with specific methods later on.
+    var selected = callBack(stats);
+    var stat = stats[selected]
+    stats.splice(selected, 1);
     return stat
 }
 
@@ -230,8 +231,8 @@ function useDate()
 function DisplayStats()
 {
     var stats = [15, 14, 13, 12, 10, 8];
-
-    var result = [StandardArray(stats), StandardArray(stats), StandardArray(stats), StandardArray(stats), StandardArray(stats), StandardArray(stats)];
+    var call = randomPropNumber // The random method we want to use
+    var result = [StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call)];
     return result;
 }
 
