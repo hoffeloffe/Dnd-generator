@@ -23,7 +23,7 @@ class PlayerList extends React.Component {
 
   let inputName = document.getElementById('inputname');
   let inputRace = document.getElementById("inputRace");
-  let inputClas = document.getElementById("inputClass");
+  let inputClass = document.getElementById("inputClass");
 
   let charTemp = document.getElementById("CharacterTemplate");
   let creatbtn = document.getElementById("btnCreate");
@@ -51,7 +51,10 @@ rancrtbtn.onclick = function()
 
 creatbtn.onclick = function()
 {
-    createCharector(inputName.value, inputRace.value, inputClas.value);
+    createCharector(inputName.value, inputRace.value, inputClass.value, DisplayStats(),
+    playerFeats[randomPropNumber(playerFeats)],
+    Math.floor(Math.random()*4 + 1),
+    playerBackground[randomPropNumber(playerBackground)]);
 }
 
 function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, PlayerBackground)
@@ -182,7 +185,7 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
 
     inputName.value = "";
     inputRace.value = "";
-    inputClas.value = "";
+    inputClass.value = "";
 }
 
 // Calculate the skill level
