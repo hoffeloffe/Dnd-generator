@@ -5,7 +5,7 @@ import { playerNames, playerRace, playerClass, playerFeats, playerBackground  } 
 
 class PlayerList extends React.Component {
     // constructor() {
-    //   super();
+    //   super(); duper test
     // }
 
     render()
