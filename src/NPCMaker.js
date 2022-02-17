@@ -24,6 +24,30 @@ class PlayerList extends React.Component {
   let inputName = document.getElementById('inputname');
   let inputRace = document.getElementById("inputRace");
   let inputClass = document.getElementById("inputClass");
+  let inputFeat = document.getElementById("inputFeat");
+  let inputCurrentLv = document.getElementById("inputCurrentLv");
+  let inputBackground = document.getElementById("inputBackground");
+  
+  let inputStrength = document.getElementById("inputStrength");
+  let inputDexterity = document.getElementById("inputDexterity");
+  let inputConstitution = document.getElementById("inputConstitution");
+  let inputIntelligence = document.getElementById("inputIntelligence");
+  let inputWisdom = document.getElementById("inputWisdom");
+  let inputCharisma = document.getElementById("inputCharisma");
+
+
+
+//   let inputProfision1 = document.getElementById("inputProfision1");
+//   let inputProfision2 = document.getElementById("inputProfision2");
+
+function findBackgroundValue(myArray, input)
+{
+    let myObj = myArray.find( ({name}) => name === input.value);
+    return(myObj);
+}
+
+
+
 
   let charTemp = document.getElementById("CharacterTemplate");
   let creatbtn = document.getElementById("btnCreate");
@@ -41,9 +65,9 @@ rancrtbtn.onclick = function()
     createCharector(
         playerNames[randomPropNumber(playerNames)],
         playerRace[randomPropNumber(playerRace)],
-        playerClass[randomPropNumber(playerClass)],
+        playerClass[randomPropNumber(playerClass)].name,
         DisplayStats(),
-        playerFeats[randomPropNumber(playerFeats)],
+        playerFeats[randomPropNumber(playerFeats)].name,
         Math.floor(Math.random()*4 + 1),
         playerBackground[randomPropNumber(playerBackground)],
         );
@@ -51,10 +75,15 @@ rancrtbtn.onclick = function()
 
 creatbtn.onclick = function()
 {
-    createCharector(inputName.value, inputRace.value, inputClass.value, DisplayStats(),
-    playerFeats[randomPropNumber(playerFeats)],
-    Math.floor(Math.random()*4 + 1),
-    playerBackground[randomPropNumber(playerBackground)]);
+    createCharector(
+        inputName.value, 
+        inputRace.value, 
+        inputClass.value, 
+        [inputStrength.value, inputDexterity.value, inputConstitution.value, inputIntelligence.value, inputWisdom.value, inputCharisma.value],
+        inputFeat.value,
+        inputCurrentLv.value,
+        findBackgroundValue(playerBackground, inputBackground),
+    );
 }
 
 function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, PlayerBackground)
@@ -89,10 +118,10 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     raceName.innerText = "Race: " + Race;
 
     let dndclass = clonedCharacter.getElementsByClassName("dndclass")[0];
-    dndclass.innerText = "Class: " +  Dndclass.name + supclass;
+    dndclass.innerText = "Class: " +  Dndclass + supclass;
 
     let feats = clonedCharacter.getElementsByClassName("feats")[0];
-    feats.innerText = "Feats: " +  Feats.name;
+    feats.innerText = "Feats: " +  Feats;
 
     let currentlv = clonedCharacter.getElementsByClassName("currentlv")[0];
     currentlv.innerText = "Lv: " +  Currentlv;

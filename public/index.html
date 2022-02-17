@@ -26,9 +26,62 @@
     <option value="Rouge">Rouge</option>
   </select>
 
-  <p><button id="btnCreate">Create Charector</button>
+  <p><label>Feat:</label></p>
+  
+  <select id="inputFeat" value="Actor">
+    <option value="Actor">Actor</option>
+    <option value="Alert">Alert</option>
+  </select>
+
+  <p><label>Level:</label></p>
+
+  <p><input id="inputCurrentLv" type="number"/></p>
+
+  <p><label>Background:</label></p>
+
+  <select id="inputBackground" value="Gladiator">
+    <option value="Gladiator">Gladiator</option>
+    <option value="Noble">Noble</option>
+    <option value="Spy">Spy</option>
+  </select>
+
+  <!-- <p><label>Custom Background (optional):</label></p>
+
+  <textarea id="inputCustomBackground" rows="4" cols="50"></textarea>
+
+  <select id="inputProfision1" value="stealth">
+    <option value="performance">performance</option>
+    <option value="stealth">stealth</option>
+  </select>
+
+  <select id="inputProfision2" value="stealth">
+    <option value="performance">performance</option>
+    <option value="stealth">stealth</option>
+  </select> -->
+
+  <p><label>Strength:</label></p>
+  <input id="inputStrength" type="number" ></input>
+  
+  <p><label>Dexterity:</label></p>
+  <input id="inputDexterity" type="number" ></input>
+  
+  <p><label>Constitution:</label></p>
+  <input id="inputConstitution" type="number" ></input>
+  
+  <p><label>Intelligence:</label></p>
+  <input id="inputIntelligence" type="number" ></input>
+  
+  <p><label>Wisdom:</label></p>
+  <input id="inputWisdom" type="number" ></input>
+  
+  <p><label>Charisma:</label></p>
+  <input id="inputCharisma" type="number" ></input>
+  
+  <p>
+    <button id="btnCreate">Create Charector</button>
     <button id="rancrtbtn">Random Create Charector</button>
   </p>
+<hr>
 
   <div id="CharacterContainer">
     <div id="CharacterTemplate" class="quest" hidden>
