@@ -13,7 +13,7 @@ class PlayerList extends React.Component {
         return (
             <>
                 <WatchWithHooks />
-                <DisplayStats />
+                <StatThrow />
            </>
         );
     }
@@ -234,6 +234,18 @@ function DisplayStats()
     var call = randomPropNumber // The random method we want to use
     var result = [StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call)];
     return result;
+}
+
+function StatThrow(){
+    var stats = [15, 14, 13, 12, 10, 8];
+    let elements = stats.map(n => <li key={n}>Number: {n}</li>); // Maps out the standard stat array used - TODO: Make that stat array defined somewhere
+
+    return(
+        <>
+        <h1>Stats used:</h1>
+        {elements}
+        </>
+    )
 }
 
 export default PlayerList;
