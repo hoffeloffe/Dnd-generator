@@ -43,6 +43,7 @@ class PlayerList extends React.Component {
 function findBackgroundValue(myArray, input)
 {
     let myObj = myArray.find( ({name}) => name === input.value);
+    console.log(myObj);
     return(myObj);
 }
 
@@ -65,10 +66,10 @@ rancrtbtn.onclick = function()
     createCharector(
         playerNames[randomPropNumber(playerNames)],
         playerRace[randomPropNumber(playerRace)],
-        playerClass[randomPropNumber(playerClass)].name,
+        playerClass[randomPropNumber(playerClass)],
         DisplayStats(),
-        playerFeats[randomPropNumber(playerFeats)].name,
-        Math.floor(Math.random()*4 + 1),
+        playerFeats[randomPropNumber(playerFeats)],
+        Math.floor(Math.random() * 4 + 1),
         playerBackground[randomPropNumber(playerBackground)],
         );
 }
@@ -78,9 +79,9 @@ creatbtn.onclick = function()
     createCharector(
         inputName.value, 
         inputRace.value, 
-        inputClass.value, 
+        findBackgroundValue(playerClass, inputClass), 
         [inputStrength.value, inputDexterity.value, inputConstitution.value, inputIntelligence.value, inputWisdom.value, inputCharisma.value],
-        inputFeat.value,
+        findBackgroundValue(playerFeats, inputFeat),
         inputCurrentLv.value,
         findBackgroundValue(playerBackground, inputBackground),
     );
@@ -94,6 +95,7 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     Race = "Human";
     if(Dndclass === '')
     Dndclass = "Programer";
+
 
     let supclass;
 
@@ -118,10 +120,10 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     raceName.innerText = "Race: " + Race;
 
     let dndclass = clonedCharacter.getElementsByClassName("dndclass")[0];
-    dndclass.innerText = "Class: " +  Dndclass + supclass;
+    dndclass.innerText = "Class: " +  Dndclass.name + supclass;
 
     let feats = clonedCharacter.getElementsByClassName("feats")[0];
-    feats.innerText = "Feats: " +  Feats;
+    feats.innerText = "Feats: " +  Feats.name;
 
     let currentlv = clonedCharacter.getElementsByClassName("currentlv")[0];
     currentlv.innerText = "Lv: " +  Currentlv;
@@ -212,9 +214,7 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
 
     characterContainerElement.appendChild(clonedCharacter);
 
-    inputName.value = "";
-    inputRace.value = "";
-    inputClass.value = "";
+
 }
 
 // Calculate the skill level
