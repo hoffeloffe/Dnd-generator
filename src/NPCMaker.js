@@ -4,16 +4,17 @@ import "./GameBrowser.css"
 import { playerNames, playerRace, playerClass, playerFeats, playerBackground  } from "./name.js";
 
 class PlayerList extends React.Component {
-    // constructor() {
-    //   super();
-    // }
+    constructor() {
+      super();
+    }
 
     render()
     {
         return (
             <>
-                <WatchWithHooks />
-                <StatThrow />
+                <InputWithHooksHandler/>
+                {/* <WatchWithHooks />
+                <StatThrow /> */}
            </>
         );
     }
@@ -27,7 +28,7 @@ class PlayerList extends React.Component {
   let inputFeat = document.getElementById("inputFeat");
   let inputCurrentLv = document.getElementById("inputCurrentLv");
   let inputBackground = document.getElementById("inputBackground");
-  
+
   let inputStrength = document.getElementById("inputStrength");
   let inputDexterity = document.getElementById("inputDexterity");
   let inputConstitution = document.getElementById("inputConstitution");
@@ -35,6 +36,9 @@ class PlayerList extends React.Component {
   let inputWisdom = document.getElementById("inputWisdom");
   let inputCharisma = document.getElementById("inputCharisma");
 
+  let charTemp = document.getElementById("CharacterTemplate");
+  let creatbtn = document.getElementById("btnCreate");
+  let rancrtbtn = document.getElementById("rancrtbtn");
 
 
 //   let inputProfision1 = document.getElementById("inputProfision1");
@@ -47,13 +51,30 @@ function findBackgroundValue(myArray, input)
     return(myObj);
 }
 
+function InputWithHooksHandler()
+{  
+    const input = useFromInput('');
 
+    return(
+        <>
+        <input {...input} />
+        <p>{input.value}</p>
+        </>
+    )
+}
+function useFromInput(initialValue)
+{
 
+    const [value , setValue] = useState(initialValue);
 
-  let charTemp = document.getElementById("CharacterTemplate");
-  let creatbtn = document.getElementById("btnCreate");
-  let rancrtbtn = document.getElementById("rancrtbtn");
+    function handleInput(e)
+    {
+        setValue(e.target.value);
+    }
 
+    return {value: value, onChange: handleInput};
+
+}
 
 function randomPropNumber(props)
 {
@@ -79,11 +100,22 @@ creatbtn.onclick = function()
     createCharector(
         inputName.value, 
         inputRace.value, 
-        findBackgroundValue(playerClass, inputClass), 
-        [inputStrength.value, inputDexterity.value, inputConstitution.value, inputIntelligence.value, inputWisdom.value, inputCharisma.value],
-        findBackgroundValue(playerFeats, inputFeat),
+        findBackgroundValue(
+        playerClass, 
+        inputClass), 
+        [inputStrength.value, 
+        inputDexterity.value, 
+        inputConstitution.value, 
+        inputIntelligence.value, 
+        inputWisdom.value, 
+        inputCharisma.value],
+        findBackgroundValue(
+        playerFeats, 
+        inputFeat),
         inputCurrentLv.value,
-        findBackgroundValue(playerBackground, inputBackground),
+        findBackgroundValue(
+        playerBackground, 
+        inputBackground),
     );
 }
 
