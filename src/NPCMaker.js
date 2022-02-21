@@ -58,7 +58,7 @@ function InputWithHooksHandler()
     return(
         <>
         <input {...input} />
-        <p>{input.value}</p>
+        <p>Preview: {input.value}</p>
         </>
     )
 }
