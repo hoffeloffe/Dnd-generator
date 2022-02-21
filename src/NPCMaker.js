@@ -52,7 +52,7 @@ function findBackgroundValue(myArray, input) {
 
 
 
-//#region Controlled input with UseState
+//#region Controlled component with UseState and hooks
 function InputWithHooksHandler() {
     bioValue = useFromInput('');
 
@@ -63,26 +63,28 @@ function InputWithHooksHandler() {
                     <label>Character bio:</label><br />
                     <textarea rows="10" cols="50" maxLength="490" {...bioValue} /><label className="characters">Max 490 characters</label>
                 </div>
-
                 <div>
                     <label>Preview:</label>
                     <br />
                     <label>{bioValue.value}</label>
                 </div>
-
             </div>
         </>
     )
 }
 
+//simpel controll component
 function useFromInput(initialValue) {
 
+    //state oprettes her, med en value og funktion setValue
     const [value, setValue] = useState(initialValue);
 
+    //state value ændres her
     function handleInput(e) {
         setValue(e.target.value);
     }
 
+    //value sættes her og samtidig lyttes der på et event, handleInput
     return { value: value, onChange: handleInput };
 }
 //#endregion
