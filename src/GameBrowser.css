@@ -46,17 +46,13 @@
 }
 
 #CharacterTemplate {
-
-
   width: 500px;
-  height: 300px;
+  height: 400px;
   border: 2px solid gray;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 15px;
   background-color: rgb(112, 113, 119);
-  
-  
 }
 
 .btnRemoveCharacter {
@@ -64,12 +60,30 @@
 }
 
 #body {
-  width: 1000px;
-  height: 700px;
+  width: 900px;
+  height: 1000px;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 15px;
-  background-color: rgb(255, 254, 220);
+  background-color: rgb(160, 159, 137);
+}
+
+.statsChoice {
+  column-count: 2;
+}
+
+#a {
+  column-count: 2;
+}
+
+.stats {
+  font-size: small;
+  column-count: 2;
+}
+
+.skills {
+  font-size: small;
+  column-count: 2;
 }
 
 .upperPart {
@@ -80,13 +94,15 @@
   column-count: 2;
 }
 
+.bio{
+  white-space: pre-wrap;
 
-.stats {
-  font-size: small;
-  column-count: 2;
 }
 
-.skills {
-  font-size: small;
-  column-count: 2;
+.characters{
+  top: 895px;
+  right: 880px;
+  font-style: italic;
+  margin-bottom: 15px;
+  font-size: xx-small;
 }

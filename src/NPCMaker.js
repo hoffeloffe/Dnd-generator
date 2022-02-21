@@ -1,89 +1,100 @@
 //import { getValue } from "@testing-library/user-event/dist/utils";
 import React, { useState, useEffect } from "react";
 import "./GameBrowser.css"
-import { playerNames, playerRace, playerClass, playerFeats, playerBackground  } from "./name.js";
+import { playerNames, playerRace, playerClass, playerFeats, playerBackground } from "./name.js";
 
 class PlayerList extends React.Component {
     constructor() {
-      super();
+        super();
     }
 
-    render()
-    {
+    render() {
         return (
             <>
-                <InputWithHooksHandler/>
+                <InputWithHooksHandler />
                 {/* <WatchWithHooks />
                 <StatThrow /> */}
-           </>
+            </>
         );
     }
-  }
+}
 
-  let characterContainerElement = document.getElementById("CharacterContainer");
+let characterContainerElement = document.getElementById("CharacterContainer");
 
-  let inputName = document.getElementById('inputname');
-  let inputRace = document.getElementById("inputRace");
-  let inputClass = document.getElementById("inputClass");
-  let inputFeat = document.getElementById("inputFeat");
-  let inputCurrentLv = document.getElementById("inputCurrentLv");
-  let inputBackground = document.getElementById("inputBackground");
+let inputName = document.getElementById('inputname');
+let inputRace = document.getElementById("inputRace");
+let inputClass = document.getElementById("inputClass");
+let inputFeat = document.getElementById("inputFeat");
+let inputCurrentLv = document.getElementById("inputCurrentLv");
+let inputBackground = document.getElementById("inputBackground");
 
-  let inputStrength = document.getElementById("inputStrength");
-  let inputDexterity = document.getElementById("inputDexterity");
-  let inputConstitution = document.getElementById("inputConstitution");
-  let inputIntelligence = document.getElementById("inputIntelligence");
-  let inputWisdom = document.getElementById("inputWisdom");
-  let inputCharisma = document.getElementById("inputCharisma");
+let inputStrength = document.getElementById("inputStrength");
+let inputDexterity = document.getElementById("inputDexterity");
+let inputConstitution = document.getElementById("inputConstitution");
+let inputIntelligence = document.getElementById("inputIntelligence");
+let inputWisdom = document.getElementById("inputWisdom");
+let inputCharisma = document.getElementById("inputCharisma");
 
-  let charTemp = document.getElementById("CharacterTemplate");
-  let creatbtn = document.getElementById("btnCreate");
-  let rancrtbtn = document.getElementById("rancrtbtn");
+let charTemp = document.getElementById("CharacterTemplate");
+let creatbtn = document.getElementById("btnCreate");
+let rancrtbtn = document.getElementById("rancrtbtn");
+let bioValue;
 
 
 //   let inputProfision1 = document.getElementById("inputProfision1");
 //   let inputProfision2 = document.getElementById("inputProfision2");
 
-function findBackgroundValue(myArray, input)
-{
-    let myObj = myArray.find( ({name}) => name === input.value);
+function findBackgroundValue(myArray, input) {
+    let myObj = myArray.find(({ name }) => name === input.value);
     console.log(myObj);
-    return(myObj);
+    return (myObj);
 }
 
-function InputWithHooksHandler()
-{  
-    const input = useFromInput('');
 
-    return(
+
+//#region Controlled input with UseState
+function InputWithHooksHandler() {
+    bioValue = useFromInput('');
+
+    return (
         <>
-        <input {...input} />
-        <p>Preview: {input.value}</p>
+            <div id="a">
+                <div>
+                    <label>Character bio:</label><br />
+                    <textarea rows="10" cols="50" maxLength="490" {...bioValue} /><label className="characters">Max 490 characters</label>
+                </div>
+
+                <div>
+                    <label>Preview:</label>
+                    <br />
+                    <label>{bioValue.value}</label>
+                </div>
+
+            </div>
         </>
     )
 }
-function useFromInput(initialValue)
-{
 
-    const [value , setValue] = useState(initialValue);
+function useFromInput(initialValue) {
 
-    function handleInput(e)
-    {
+    const [value, setValue] = useState(initialValue);
+
+    function handleInput(e) {
         setValue(e.target.value);
     }
 
-    return {value: value, onChange: handleInput};
-
+    return { value: value, onChange: handleInput };
 }
+//#endregion
 
-function randomPropNumber(props)
-{
-    var selected = Math.floor(Math.random()*props.length);
+
+
+function randomPropNumber(props) {
+    var selected = Math.floor(Math.random() * props.length);
     return selected;
 }
 
-rancrtbtn.onclick = function()
-{
+rancrtbtn.onclick = function () {
     createCharector(
         playerNames[randomPropNumber(playerNames)],
         playerRace[randomPropNumber(playerRace)],
@@ -92,54 +103,50 @@ rancrtbtn.onclick = function()
         playerFeats[randomPropNumber(playerFeats)],
         Math.floor(Math.random() * 4 + 1),
         playerBackground[randomPropNumber(playerBackground)],
-        );
-}
-
-creatbtn.onclick = function()
-{
-    createCharector(
-        inputName.value, 
-        inputRace.value, 
-        findBackgroundValue(
-        playerClass, 
-        inputClass), 
-        [inputStrength.value, 
-        inputDexterity.value, 
-        inputConstitution.value, 
-        inputIntelligence.value, 
-        inputWisdom.value, 
-        inputCharisma.value],
-        findBackgroundValue(
-        playerFeats, 
-        inputFeat),
-        inputCurrentLv.value,
-        findBackgroundValue(
-        playerBackground, 
-        inputBackground),
     );
 }
 
-function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, PlayerBackground)
-{
-    if(Name === '')
-    Name = "Hoffe";
-    if(Race === '')
-    Race = "Human";
-    if(Dndclass === '')
-    Dndclass = "Programer";
+creatbtn.onclick = function () {
+    createCharector(
+        inputName.value,
+        inputRace.value,
+        findBackgroundValue(
+            playerClass,
+            inputClass),
+        [inputStrength.value,
+        inputDexterity.value,
+        inputConstitution.value,
+        inputIntelligence.value,
+        inputWisdom.value,
+        inputCharisma.value],
+        findBackgroundValue(
+            playerFeats,
+            inputFeat),
+        inputCurrentLv.value,
+        findBackgroundValue(
+            playerBackground,
+            inputBackground),
+            
+    );
+}
+
+function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, PlayerBackground) {
+    if (Name === '')
+        Name = "Hoffe";
+    if (Race === '')
+        Race = "Human";
+    if (Dndclass === '')
+        Dndclass = "Programer";
 
 
     let supclass;
 
-    if(Currentlv >= 3)
-    {
+    if (Currentlv >= 3) {
         supclass = " (" + Dndclass.sub[randomPropNumber(Dndclass.sub)] + ")";
     }
-    else
-    {
+    else {
         supclass = '';
     }
-
 
     let clonedCharacter = charTemp.cloneNode(true);
     clonedCharacter.removeAttribute("hidden");
@@ -152,16 +159,19 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     raceName.innerText = "Race: " + Race;
 
     let dndclass = clonedCharacter.getElementsByClassName("dndclass")[0];
-    dndclass.innerText = "Class: " +  Dndclass.name + supclass;
+    dndclass.innerText = "Class: " + Dndclass.name + supclass;
 
     let feats = clonedCharacter.getElementsByClassName("feats")[0];
-    feats.innerText = "Feats: " +  Feats.name;
+    feats.innerText = "Feats: " + Feats.name;
 
     let currentlv = clonedCharacter.getElementsByClassName("currentlv")[0];
-    currentlv.innerText = "Lv: " +  Currentlv;
+    currentlv.innerText = "Lv: " + Currentlv;
 
     let playerBackground = clonedCharacter.getElementsByClassName("background")[0];
-    playerBackground.innerText = "Back: " +  PlayerBackground.name;
+    playerBackground.innerText = "Back: " + PlayerBackground.name;
+
+    let playerBio = clonedCharacter.getElementsByClassName("urBio")[0];
+    playerBio.innerText = bioValue.value; 
 
     /////
     // STATS
@@ -212,7 +222,7 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     let stealth = clonedCharacter.getElementsByClassName("stealtht")[0];
     let survival = clonedCharacter.getElementsByClassName("survivalt")[0];
     let medicine = clonedCharacter.getElementsByClassName("medicinet")[0];
-
+    
     // Set a list with all proficiency bonuses to keep it neat
     var profList = PlayerBackground.pro
 
@@ -239,8 +249,7 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
 
     let clonedButton = clonedCharacter.getElementsByTagName("button")[0];
 
-    clonedButton.onclick = function()
-    {
+    clonedButton.onclick = function () {
         this.parentNode.remove();
     };
 
@@ -250,13 +259,12 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
 }
 
 // Calculate the skill level
-function handleProficien(skill, prof, currentlv, stat)
-{
+function handleProficien(skill, prof, currentlv, stat) {
     // If the skill is 10, bonus is 0. Otherwise it changes on every even it goes up or uneven down.
     var result = Math.floor((stat - 10) / 2);
 
-    if(prof.includes(skill)){
-        var profBonus = Math.floor(2 + (currentlv-1)/4);
+    if (prof.includes(skill)) {
+        var profBonus = Math.floor(2 + (currentlv - 1) / 4);
         result += profBonus;
     }
     return result
@@ -264,8 +272,7 @@ function handleProficien(skill, prof, currentlv, stat)
 
 
 
-function StandardArray(stats, callBack)
-{
+function StandardArray(stats, callBack) {
     // Callbacks in case we want to sort it with specific methods later on.
     var selected = callBack(stats);
     var stat = stats[selected]
@@ -273,41 +280,38 @@ function StandardArray(stats, callBack)
     return stat
 }
 
-function WatchWithHooks()
-{
+function WatchWithHooks() {
     let date = useDate();
 
-    return(<h1>{date.toLocaleTimeString()}</h1>)
+    return (<h1>{date.toLocaleTimeString()}</h1>)
 }
 
-function useDate()
-{
+function useDate() {
     const [date, setDate] = useState(new Date());
 
     useEffect(() => {
-        let id = setInterval(() => setDate(new Date()),100);
+        let id = setInterval(() => setDate(new Date()), 100);
         return () => clearInterval(id);
     })
 
     return date;
 }
 
-function DisplayStats()
-{
+function DisplayStats() {
     var stats = [15, 14, 13, 12, 10, 8];
     var call = randomPropNumber // The random method we want to use
     var result = [StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call)];
     return result;
 }
 
-function StatThrow(){
+function StatThrow() {
     var stats = [15, 14, 13, 12, 10, 8];
     let elements = stats.map(n => <li key={n}>Number: {n}</li>); // Maps out the standard stat array used - TODO: Make that stat array defined somewhere
 
-    return(
+    return (
         <>
-        <h1>Stats used:</h1>
-        {elements}
+            <h1>Stats used:</h1>
+            {elements}
         </>
     )
 }

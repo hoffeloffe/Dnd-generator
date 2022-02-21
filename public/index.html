@@ -8,53 +8,53 @@
 <body id="body">
   <div id="Box"></div>
   <h1>CharacterMaker 2.0</h1>
-  <h4>Basic info:</h4>
-  <label>Name:</label>
-  <p><input id="inputname" value="Name..."/></p>
 
-  <p><label>Race:</label></p>
 
-  <select id="inputRace" value="Elf">
-    <option value="Elf">Elf</option>
-    <option value="DragonBorn">DragonBorn</option>
-  </select>
+  <div class="basicInfo">
+    <h4>Basic info:</h4>
+    <label>Name:</label>
+    <p><input id="inputname" value="Name..." /></p>
 
-  <p><label>Class:</label></p>
+    <p><label>Race:</label></p>
+    <select id="inputRace" value="Elf">
+      <option value="Elf">Elf</option>
+      <option value="DragonBorn">DragonBorn</option>
+    </select>
 
-  <select id="inputClass" value="Wizard">
-    <option value="Wizard">Wizard</option>
-    <option value="Rouge">Rouge</option>
-    <option value="Warlock">Warlock</option>
-    <option value="Sorcerer">Sorcerer</option>
-    <option value="Ranger">Ranger</option>
-    <option value="Paladin">Paladin</option>
-    <option value="Fighter">Fighter</option>
-    <option value="Druid">Druid</option>
-    <option value="Monk">Monk</option>
-    <option value="Bard">Bard</option>
-    <option value="Cleric">Cleric</option>
-    <option value="Barbarian">Barbarian</option>
-  </select>
+    <p><label>Class:</label></p>
+    <select id="inputClass" value="Wizard">
+      <option value="Wizard">Wizard</option>
+      <option value="Rouge">Rouge</option>
+      <option value="Warlock">Warlock</option>
+      <option value="Sorcerer">Sorcerer</option>
+      <option value="Ranger">Ranger</option>
+      <option value="Paladin">Paladin</option>
+      <option value="Fighter">Fighter</option>
+      <option value="Druid">Druid</option>
+      <option value="Monk">Monk</option>
+      <option value="Bard">Bard</option>
+      <option value="Cleric">Cleric</option>
+      <option value="Barbarian">Barbarian</option>
+    </select>
 
-  <p><label>Feat:</label></p>
-  
-  <select id="inputFeat" value="Actor">
-    <option value="Actor">Actor</option>
-    <option value="Alert">Alert</option>
-  </select>
+    <p><label>Feat:</label></p>
+    <select id="inputFeat" value="Actor">
+      <option value="Actor">Actor</option>
+      <option value="Alert">Alert</option>
+    </select>
 
-  <p><label>Level:</label></p>
+    <p><label>Level:</label></p>
+    <p><input id="inputCurrentLv" type="number" value='0' /></p>
 
-  <p><input id="inputCurrentLv" type="number" value='0'/></p>
+    <p><label>Background:</label></p>
+    <select id="inputBackground" value="Gladiator">
+      <option value="Gladiator">Gladiator</option>
+      <option value="Noble">Noble</option>
+      <option value="Spy">Spy</option>
+    </select>
 
-  <p><label>Background:</label></p>
-
-  <select id="inputBackground" value="Gladiator">
-    <option value="Gladiator">Gladiator</option>
-    <option value="Noble">Noble</option>
-    <option value="Spy">Spy</option>
-  </select>
-
+    <!-- <img class="image" src="https://i.redd.it/cgxw62my53p71.jpg" width="580" height="436" /> -->
+  </div>
   <!-- <p><label>Custom Background (optional):</label></p>
 
   <textarea id="inputCustomBackground" rows="4" cols="50"></textarea>
@@ -69,38 +69,43 @@
     <option value="stealth">stealth</option>
   </select> -->
 
-  <p><label>Strength:</label></p>
-  <input id="inputStrength" type="number" value="8"></input>
-  
-  <p><label>Dexterity:</label></p>
-  <input id="inputDexterity" type="number" value="8"></input>
-  
-  <p><label>Constitution:</label></p>
-  <input id="inputConstitution" type="number" value="8"></input>
-  
-  <p><label>Intelligence:</label></p>
-  <input id="inputIntelligence" type="number" value="8"></input>
-  
-  <p><label>Wisdom:</label></p>
-  <input id="inputWisdom" type="number" value="8"></input>
-  
-  <p><label>Charisma:</label></p>
-  <input id="inputCharisma" type="number" value="8"></input>
+  <div class="statsChoice">
+    <div>
+      <p><label>Strength:</label></p>
+      <input id="inputStrength" type="number" value="8"></input>
+
+      <p><label>Dexterity:</label></p>
+      <input id="inputDexterity" type="number" value="8"></input>
+
+      <p><label>Constitution:</label></p>
+      <input id="inputConstitution" type="number" value="8"></input>
+    </div>
+    <div>
+
+      <p><label>Intelligence:</label></p>
+      <input id="inputIntelligence" type="number" value="8"></input>
+
+      <p><label>Wisdom:</label></p>
+      <input id="inputWisdom" type="number" value="8"></input>
+
+      <p><label>Charisma:</label></p>
+      <input id="inputCharisma" type="number" value="8"></input>
+    </div>
+  </div>
 
 
-  
   <p>
     <button id="btnCreate">Create Charector</button>
     <button id="rancrtbtn">Random Create Charector</button>
   </p>
-<hr>
+  <hr>
 
   <div id="CharacterContainer">
     <div id="CharacterTemplate" class="quest" hidden>
       <button class="btnRemoveCharacter"><small>x</small></button> <label>Character Info</label>
       <hr>
       <div class="upperPart">
-        
+
         <div class="info">
           <li class="CharacterName" style="font-size: small;"></li>
           <li class="RaceName" style="font-size: small;"></li>
@@ -170,6 +175,13 @@
           <label class="survivalt"></label>
         </div>
       </div>
+      <hr/>
+      <div class="characterBio">
+        <text>Character Bio:</text>
+        <label class="urBio" ></label>
+      </div>
+
+
     </div>
   </div>
   </div>
