@@ -6,18 +6,44 @@ import { playerNames, playerRace, playerClass, playerFeats, playerBackground } f
 class PlayerList extends React.Component {
     constructor() {
         super();
+        this.state = {
+            num1: 0,
+
+    }
+    this.handleClick = this.handleClick.bind(this);
+}
+
+    handleClick(x) 
+    {
+        this.setState( ()=> 
+        {
+            return {
+                num1: Math.floor(Math.random() * x) + 1
+            }
+        })
     }
 
-    render() {
+    render() 
+    {
         return (
             <>
                 <InputWithHooksHandler />
+                <h1>{this.state.num1}</h1>
+                <button onClick={() => this.handleClick(20)}>Roll D20</button>
+                <button onClick={() => this.handleClick(12)}>Roll D12</button>
+                <button onClick={() => this.handleClick(10)}>Roll D10</button>
+                <button onClick={() => this.handleClick(8)}>Roll D8</button>
+                <button onClick={() => this.handleClick(6)}>Roll D6</button>
+                <button onClick={() => this.handleClick(4)}>Roll D4</button>
+                <button onClick={() => this.handleClick(2)}>Roll D2</button>
                 {/* <WatchWithHooks />
                 <StatThrow /> */}
             </>
         );
     }
 }
+
+
 
 let characterContainerElement = document.getElementById("CharacterContainer");
 
@@ -36,10 +62,13 @@ let inputWisdom = document.getElementById("inputWisdom");
 let inputCharisma = document.getElementById("inputCharisma");
 
 let charTemp = document.getElementById("CharacterTemplate");
+
 let creatbtn = document.getElementById("btnCreate");
 let rancrtbtn = document.getElementById("rancrtbtn");
 let bioValue;
 
+let statsthrow = document.getElementById("statsthrow");
+let outputstatsthrow = document.getElementById("outputstatsthrow");
 
 //   let inputProfision1 = document.getElementById("inputProfision1");
 //   let inputProfision2 = document.getElementById("inputProfision2");
@@ -93,6 +122,7 @@ function randomPropNumber(props) {
     var selected = Math.floor(Math.random() * props.length);
     return selected;
 }
+    
 
 rancrtbtn.onclick = function () {
     createCharector(
@@ -314,6 +344,21 @@ function StatThrow() {
             {elements}
         </>
     )
+}
+
+statsthrow.onclick = function () 
+{ 
+    var stats = [15, 14, 13, 12, 10, 8];
+    let elements = stats.map(n => <li key={n}>{n}</li>); // Maps out the standard stat array used - TODO: Make that stat array defined somewhere
+    let string = '';
+
+    elements.forEach(element => 
+    {
+        string += `Number: ${element.key}
+        `;
+    });
+    
+    outputstatsthrow.innerText = string;
 }
 
 export default PlayerList;
