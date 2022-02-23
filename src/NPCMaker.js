@@ -1,5 +1,5 @@
 //import { getValue } from "@testing-library/user-event/dist/utils";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./GameBrowser.css"
 import { playerNames, playerRace, playerClass, playerFeats, playerBackground } from "./name.js";
 import {randomProp, StandardArray, Copy} from './helper.js';
@@ -11,9 +11,10 @@ class PlayerList extends React.Component {
             num1: 0,
 
     }
+    //Bind funktion handleClick
     this.handleClick = this.handleClick.bind(this);
 }
-
+    //Funktion takes one argument that set the maximum value random Math can rool to state.num1 using the setState method.
     handleClick(x) 
     {
         this.setState( ()=> 
@@ -29,7 +30,9 @@ class PlayerList extends React.Component {
         return (
             <>
                 <InputWithHooksHandler />
+                {/* Visual repentatation of state.num1 */}
                 <h3 id="RollNumber">{this.state.num1}</h3>
+                {/* Using arrow funktion because the Render methods should be a pure function of props and state.*/}
                 <button onClick={() => this.handleClick(20)}>Roll D20</button>
                 <button onClick={() => this.handleClick(12)}>Roll D12</button>
                 <button onClick={() => this.handleClick(10)}>Roll D10</button>
@@ -37,17 +40,12 @@ class PlayerList extends React.Component {
                 <button onClick={() => this.handleClick(6)}>Roll D6</button>
                 <button onClick={() => this.handleClick(4)}>Roll D4</button>
                 <button onClick={() => this.handleClick(2)}>Roll D2</button>
-                {/* <WatchWithHooks />
-                <StatThrow /> */}
             </>
         );
     }
 }
 
-
-
 let characterContainerElement = document.getElementById("CharacterContainer");
-
 let inputName = document.getElementById('inputname');
 let inputRace = document.getElementById("inputRace");
 let inputClass = document.getElementById("inputClass");
@@ -72,9 +70,7 @@ var basestat = [15, 14, 13, 12, 10, 8];
 let statsthrow = document.getElementById("statsthrow");
 let outputstatsthrow = document.getElementById("outputstatsthrow");
 
-//   let inputProfision1 = document.getElementById("inputProfision1");
-//   let inputProfision2 = document.getElementById("inputProfision2");
-
+//Funktion that takes an array and an input that uses .find to find objects that have the same name as the input.value if fund the function return the object, else return undefined.
 function findBackgroundValue(myArray, input) {
     let myObj = myArray.find(({ name }) => name === input.value);
     console.log(myObj);
@@ -120,6 +116,7 @@ function useFromInput(initialValue) {
 }
 //#endregion
 
+//Button with createCharector funktion with randomPorp
 rancrtbtn.onclick = function () {
     createCharector(
         playerNames[randomProp(playerNames)],
@@ -131,7 +128,7 @@ rancrtbtn.onclick = function () {
         playerBackground[randomProp(playerBackground)],
     );
 }
-
+//Button with createCharector funktion with inputValue from index.HTML
 creatbtn.onclick = function () {
     createCharector(
         inputName.value,
@@ -155,7 +152,7 @@ creatbtn.onclick = function () {
 
     );
 }
-
+//Funktion makes a clone from a html template 
 function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, PlayerBackground) {
     if (Name === '')
         Name = "Hoffe";
@@ -174,10 +171,14 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
         supclass = '';
     }
 
+    //CloneNode
     let clonedCharacter = charTemp.cloneNode(true);
+
+    //RemoveAttribute
     clonedCharacter.removeAttribute("hidden");
     clonedCharacter.removeAttribute("CharacterTemplate");
 
+    //Sets all the values
     let clonedName = clonedCharacter.getElementsByClassName("CharacterName")[0];
     clonedName.innerText = "Name: " + Name;
 
@@ -272,16 +273,16 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     survival.innerText = "survival: " + handleProficien('survival', profList, Currentlv, wis);
     medicine.innerText = "medicine: " + handleProficien('medicine', profList, Currentlv, wis);
 
-
+    //Gettting the button on the cloned template
     let clonedButton = clonedCharacter.getElementsByTagName("button")[0];
 
+    //remove it self from the list
     clonedButton.onclick = function () {
         this.parentNode.remove();
     };
 
+    //Adds the clone to the end of the list of children
     characterContainerElement.appendChild(clonedCharacter);
-
-
 }
 
 // Calculate the skill level
@@ -296,22 +297,6 @@ function handleProficien(skill, prof, currentlv, stat) {
     return result
 }
 
-function WatchWithHooks() {
-    let date = useDate();
-
-    return (<h1>{date.toLocaleTimeString()}</h1>)
-}
-
-function useDate() {
-    const [date, setDate] = useState(new Date());
-
-    useEffect(() => {
-        let id = setInterval(() => setDate(new Date()), 100);
-        return () => clearInterval(id);
-    })
-
-    return date;
-}
 
 function DisplayStats() {
     var stats = Copy(basestat);
@@ -320,17 +305,17 @@ function DisplayStats() {
     return result;
 }
 
-function StatThrow() {
-    var stats = Copy(basestat);
-    let elements = stats.map(n => <li key={n}>Number: {n}</li>); // Maps out the standard stat array used - TODO: Make that stat array defined somewhere
+// function StatThrow() {
+//     var stats = Copy(basestat);
+//     let elements = stats.map(n => <li key={n}>Number: {n}</li>); // Maps out the standard stat array used - TODO: Make that stat array defined somewhere
 
-    return (
-        <>
-            <h1>Stats used:</h1>
-            {elements}
-        </>
-    )
-}
+//     return (
+//         <>
+//             <h1>Stats used:</h1>
+//             {elements}
+//         </>
+//     )
+// }
 
 statsthrow.onclick = function () 
 { 
