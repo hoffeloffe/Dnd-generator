@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "./GameBrowser.css"
 import { playerNames, playerRace, playerClass, playerFeats, playerBackground } from "./name.js";
+import {randomProp, StandardArray, Copy} from './helper.js';
 
 class PlayerList extends React.Component {
     constructor() {
@@ -39,6 +40,8 @@ let charTemp = document.getElementById("CharacterTemplate");
 let creatbtn = document.getElementById("btnCreate");
 let rancrtbtn = document.getElementById("rancrtbtn");
 let bioValue;
+
+var basestat = [15, 14, 13, 12, 10, 8];
 
 
 //   let inputProfision1 = document.getElementById("inputProfision1");
@@ -89,22 +92,15 @@ function useFromInput(initialValue) {
 }
 //#endregion
 
-
-
-function randomPropNumber(props) {
-    var selected = Math.floor(Math.random() * props.length);
-    return selected;
-}
-
 rancrtbtn.onclick = function () {
     createCharector(
-        playerNames[randomPropNumber(playerNames)],
-        playerRace[randomPropNumber(playerRace)],
-        playerClass[randomPropNumber(playerClass)],
+        playerNames[randomProp(playerNames)],
+        playerRace[randomProp(playerRace)],
+        playerClass[randomProp(playerClass)],
         DisplayStats(),
-        playerFeats[randomPropNumber(playerFeats)],
+        playerFeats[randomProp(playerFeats)],
         Math.floor(Math.random() * 4 + 1),
-        playerBackground[randomPropNumber(playerBackground)],
+        playerBackground[randomProp(playerBackground)],
     );
 }
 
@@ -128,7 +124,7 @@ creatbtn.onclick = function () {
         findBackgroundValue(
             playerBackground,
             inputBackground),
-            
+
     );
 }
 
@@ -144,7 +140,7 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     let supclass;
 
     if (Currentlv >= 3) {
-        supclass = " (" + Dndclass.sub[randomPropNumber(Dndclass.sub)] + ")";
+        supclass = " (" + Dndclass.sub[randomProp(Dndclass.sub)] + ")";
     }
     else {
         supclass = '';
@@ -173,7 +169,7 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     playerBackground.innerText = "Back: " + PlayerBackground.name;
 
     let playerBio = clonedCharacter.getElementsByClassName("urBio")[0];
-    playerBio.innerText = bioValue.value; 
+    playerBio.innerText = bioValue.value;
 
     /////
     // STATS
@@ -224,7 +220,7 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     let stealth = clonedCharacter.getElementsByClassName("stealtht")[0];
     let survival = clonedCharacter.getElementsByClassName("survivalt")[0];
     let medicine = clonedCharacter.getElementsByClassName("medicinet")[0];
-    
+
     // Set a list with all proficiency bonuses to keep it neat
     var profList = PlayerBackground.pro
 
@@ -272,16 +268,6 @@ function handleProficien(skill, prof, currentlv, stat) {
     return result
 }
 
-
-
-function StandardArray(stats, callBack) {
-    // Callbacks in case we want to sort it with specific methods later on.
-    var selected = callBack(stats);
-    var stat = stats[selected]
-    stats.splice(selected, 1);
-    return stat
-}
-
 function WatchWithHooks() {
     let date = useDate();
 
@@ -300,14 +286,14 @@ function useDate() {
 }
 
 function DisplayStats() {
-    var stats = [15, 14, 13, 12, 10, 8];
-    var call = randomPropNumber // The random method we want to use
+    var stats = Copy(basestat);
+    var call = randomProp // The random method we want to use
     var result = [StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call)];
     return result;
 }
 
 function StatThrow() {
-    var stats = [15, 14, 13, 12, 10, 8];
+    var stats = Copy(basestat);
     let elements = stats.map(n => <li key={n}>Number: {n}</li>); // Maps out the standard stat array used - TODO: Make that stat array defined somewhere
 
     return (
