@@ -28,7 +28,7 @@ class PlayerList extends React.Component {
         return (
             <>
                 <InputWithHooksHandler />
-                <h1>{this.state.num1}</h1>
+                <h3 id="RollNumber">{this.state.num1}</h3>
                 <button onClick={() => this.handleClick(20)}>Roll D20</button>
                 <button onClick={() => this.handleClick(12)}>Roll D12</button>
                 <button onClick={() => this.handleClick(10)}>Roll D10</button>

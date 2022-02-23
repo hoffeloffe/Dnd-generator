@@ -66,6 +66,15 @@
   border-radius: 5px;
   margin-bottom: 15px;
   background-color: rgb(160, 159, 137);
+  background-image: url('Sexy.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+#RollNumber{
+  font-size: 30px;
+  color: rgb(255, 255, 255);
 }
 
 .statsChoice {
