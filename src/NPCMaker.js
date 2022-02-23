@@ -2,22 +2,49 @@
 import React, { useState, useEffect } from "react";
 import "./GameBrowser.css"
 import { playerNames, playerRace, playerClass, playerFeats, playerBackground } from "./name.js";
+import {randomProp, StandardArray, Copy} from './helper.js';
 
 class PlayerList extends React.Component {
     constructor() {
         super();
+        this.state = {
+            num1: 0,
+
+    }
+    this.handleClick = this.handleClick.bind(this);
+}
+
+    handleClick(x) 
+    {
+        this.setState( ()=> 
+        {
+            return {
+                num1: Math.floor(Math.random() * x) + 1
+            }
+        })
     }
 
-    render() {
+    render() 
+    {
         return (
             <>
                 <InputWithHooksHandler />
+                <h3 id="RollNumber">{this.state.num1}</h3>
+                <button onClick={() => this.handleClick(20)}>Roll D20</button>
+                <button onClick={() => this.handleClick(12)}>Roll D12</button>
+                <button onClick={() => this.handleClick(10)}>Roll D10</button>
+                <button onClick={() => this.handleClick(8)}>Roll D8</button>
+                <button onClick={() => this.handleClick(6)}>Roll D6</button>
+                <button onClick={() => this.handleClick(4)}>Roll D4</button>
+                <button onClick={() => this.handleClick(2)}>Roll D2</button>
                 {/* <WatchWithHooks />
                 <StatThrow /> */}
             </>
         );
     }
 }
+
+
 
 let characterContainerElement = document.getElementById("CharacterContainer");
 
@@ -36,11 +63,15 @@ let inputWisdom = document.getElementById("inputWisdom");
 let inputCharisma = document.getElementById("inputCharisma");
 
 let charTemp = document.getElementById("CharacterTemplate");
+
 let creatbtn = document.getElementById("btnCreate");
 let rancrtbtn = document.getElementById("rancrtbtn");
 let bioValue;
 let clonedGender;
+var basestat = [15, 14, 13, 12, 10, 8];
 
+let statsthrow = document.getElementById("statsthrow");
+let outputstatsthrow = document.getElementById("outputstatsthrow");
 
 //   let inputProfision1 = document.getElementById("inputProfision1");
 //   let inputProfision2 = document.getElementById("inputProfision2");
@@ -111,14 +142,13 @@ function randomPropNumber(props) {
 
 rancrtbtn.onclick = function () {
     createCharector(
-        playerNames[randomPropNumber(playerNames)],
-        playerRace[randomPropNumber(playerRace)],
-        playerClass[randomPropNumber(playerClass)],
+        playerNames[randomProp(playerNames)],
+        playerRace[randomProp(playerRace)],
+        playerClass[randomProp(playerClass)],
         DisplayStats(),
-        playerFeats[randomPropNumber(playerFeats)],
+        playerFeats[randomProp(playerFeats)],
         Math.floor(Math.random() * 4 + 1),
-        playerBackground[randomPropNumber(playerBackground)],
-        getData(playerNames[randomPropNumber(playerNames)])
+        playerBackground[randomProp(playerBackground)],
     );
 }
 
@@ -157,7 +187,7 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     let supclass;
 
     if (Currentlv >= 3) {
-        supclass = " (" + Dndclass.sub[randomPropNumber(Dndclass.sub)] + ")";
+        supclass = " (" + Dndclass.sub[randomProp(Dndclass.sub)] + ")";
     }
     else {
         supclass = '';
@@ -189,7 +219,7 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     playerBackground.innerText = "Back: " + PlayerBackground.name;
 
     let playerBio = clonedCharacter.getElementsByClassName("urBio")[0];
-    playerBio.innerText = bioValue.value; 
+    playerBio.innerText = bioValue.value;
 
     /////
     // STATS
@@ -240,7 +270,7 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     let stealth = clonedCharacter.getElementsByClassName("stealtht")[0];
     let survival = clonedCharacter.getElementsByClassName("survivalt")[0];
     let medicine = clonedCharacter.getElementsByClassName("medicinet")[0];
-    
+
     // Set a list with all proficiency bonuses to keep it neat
     var profList = PlayerBackground.pro
 
@@ -288,16 +318,6 @@ function handleProficien(skill, prof, currentlv, stat) {
     return result
 }
 
-
-
-function StandardArray(stats, callBack) {
-    // Callbacks in case we want to sort it with specific methods later on.
-    var selected = callBack(stats);
-    var stat = stats[selected]
-    stats.splice(selected, 1);
-    return stat
-}
-
 function WatchWithHooks() {
     let date = useDate();
 
@@ -316,14 +336,14 @@ function useDate() {
 }
 
 function DisplayStats() {
-    var stats = [15, 14, 13, 12, 10, 8];
-    var call = randomPropNumber // The random method we want to use
+    var stats = Copy(basestat);
+    var call = randomProp // The random method we want to use
     var result = [StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call), StandardArray(stats, call)];
     return result;
 }
 
 function StatThrow() {
-    var stats = [15, 14, 13, 12, 10, 8];
+    var stats = Copy(basestat);
     let elements = stats.map(n => <li key={n}>Number: {n}</li>); // Maps out the standard stat array used - TODO: Make that stat array defined somewhere
 
     return (
@@ -332,6 +352,21 @@ function StatThrow() {
             {elements}
         </>
     )
+}
+
+statsthrow.onclick = function () 
+{ 
+    var stats = [15, 14, 13, 12, 10, 8];
+    let elements = stats.map(n => <li key={n}>{n}</li>); // Maps out the standard stat array used - TODO: Make that stat array defined somewhere
+    let string = '';
+
+    elements.forEach(element => 
+    {
+        string += `Number: ${element.key}
+        `;
+    });
+    
+    outputstatsthrow.innerText = string;
 }
 
 export default PlayerList;
