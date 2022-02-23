@@ -116,7 +116,19 @@ function useFromInput(initialValue) {
 }
 //#endregion
 
-//Button with createCharector funktion with randomPorp
+async function getData(name){
+    let genderPromise = getGenderPromise(name);
+    let gender = await genderPromise;
+    return gender;
+}
+
+function getGenderPromise(name){
+    return fetch("https://api.genderize.io/?name=" + name)
+    .then(response => response.json())
+    .then(genderObject => genderObject.gender);
+}
+
+
 rancrtbtn.onclick = function () {
     createCharector(
         playerNames[randomProp(playerNames)],
@@ -148,12 +160,11 @@ creatbtn.onclick = function () {
         inputCurrentLv.value,
         findBackgroundValue(
             playerBackground,
-            inputBackground),
-
+            inputBackground)
     );
 }
-//Funktion makes a clone from a html template 
-function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, PlayerBackground) {
+
+function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, PlayerBackground, Gender) {
     if (Name === '')
         Name = "Hoffe";
     if (Race === '')
@@ -181,6 +192,14 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
     //Sets all the values
     let clonedName = clonedCharacter.getElementsByClassName("CharacterName")[0];
     clonedName.innerText = "Name: " + Name;
+
+    let clonedGender = clonedCharacter.getElementsByClassName("Gender")[0]; 
+    let gender = getData(Name);
+
+    gender.then((gender) => 
+    {
+        clonedGender.innerText = "Gender: " + gender;
+    });    
 
     let raceName = clonedCharacter.getElementsByClassName("RaceName")[0];
     raceName.innerText = "Race: " + Race;
