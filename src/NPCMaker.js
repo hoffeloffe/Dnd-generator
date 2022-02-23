@@ -39,6 +39,7 @@ let charTemp = document.getElementById("CharacterTemplate");
 let creatbtn = document.getElementById("btnCreate");
 let rancrtbtn = document.getElementById("rancrtbtn");
 let bioValue;
+let clonedGender;
 
 
 //   let inputProfision1 = document.getElementById("inputProfision1");
@@ -89,7 +90,19 @@ function useFromInput(initialValue) {
 }
 //#endregion
 
+async function getData(name){
+    let genderPromise = getGenderPromise(name);
 
+        let gender = await genderPromise;
+
+    clonedGender.innerText = "Gender: " + gender;
+}
+
+function getGenderPromise(name){
+    return fetch("https://api.genderize.io/?name=" + name)
+    .then(response => response.json())
+    .then(genderObject => genderObject.gender);
+}
 
 function randomPropNumber(props) {
     var selected = Math.floor(Math.random() * props.length);
@@ -105,6 +118,7 @@ rancrtbtn.onclick = function () {
         playerFeats[randomPropNumber(playerFeats)],
         Math.floor(Math.random() * 4 + 1),
         playerBackground[randomPropNumber(playerBackground)],
+        getData(playerNames[randomPropNumber(playerNames)])
     );
 }
 
@@ -128,11 +142,10 @@ creatbtn.onclick = function () {
         findBackgroundValue(
             playerBackground,
             inputBackground),
-            
     );
 }
 
-function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, PlayerBackground) {
+function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, PlayerBackground, getData) {
     if (Name === '')
         Name = "Hoffe";
     if (Race === '')
@@ -156,6 +169,9 @@ function createCharector(Name, Race, Dndclass, PlayerStats, Feats, Currentlv, Pl
 
     let clonedName = clonedCharacter.getElementsByClassName("CharacterName")[0];
     clonedName.innerText = "Name: " + Name;
+
+    clonedGender = clonedCharacter.getElementsByClassName("Gender")[0]; 
+    clonedGender = getData;
 
     let raceName = clonedCharacter.getElementsByClassName("RaceName")[0];
     raceName.innerText = "Race: " + Race;
