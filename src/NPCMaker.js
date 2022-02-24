@@ -324,18 +324,6 @@ function DisplayStats() {
     return result;
 }
 
-// function StatThrow() {
-//     var stats = Copy(basestat);
-//     let elements = stats.map(n => <li key={n}>Number: {n}</li>); // Maps out the standard stat array used - TODO: Make that stat array defined somewhere
-
-//     return (
-//         <>
-//             <h1>Stats used:</h1>
-//             {elements}
-//         </>
-//     )
-// }
-
 statsthrow.onclick = function () 
 { 
     var stats = [15, 14, 13, 12, 10, 8];
