@@ -79,7 +79,7 @@ function findBackgroundValue(myArray, input) {
 
 
 
-//#region Controlled component with UseState and hooks
+//#region Controlled component with UseState and function with hooks
 function InputWithHooksHandler() {
     bioValue = useFromInput('');
 
